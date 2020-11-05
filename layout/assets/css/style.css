@@ -17,20 +17,23 @@
     letter-spacing: 7px;
     font-size: 30px;
   }
-  .nav-links {
+  a {
     display: flex;
-    /* background-color: black; */
+    color: whitesmoke;
     justify-content: space-around;
-    width: 40%;
     list-style: none;
   }
   .nav-links a {
     color: whitesmoke;
     text-decoration: none;
     letter-spacing: 3px;
-    /* font-weight: bold; */
+   
     font-size: 20px;
   }
+  .form_control{
+    border-radius: 0;
+  }
+
   .burger {
     display: none;
     cursor: pointer;
@@ -42,6 +45,15 @@
     background-color: whitesmoke;
     transition: all 0.3 ease;
   }
+
+  section {
+    background-color: rgb(85, 114, 68);
+  }
+  .login {
+    margin: 20px;
+    
+  }
+ 
   
   @media screen and (max-width: 1024px) {
     .nav-links {
