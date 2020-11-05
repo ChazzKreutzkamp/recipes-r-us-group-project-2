@@ -53,6 +53,9 @@
     margin: 20px;
     
   }
+  .temp-img{
+    background-color: rgb(85, 114, 68);
+  }
  
   
   @media screen and (max-width: 1024px) {
