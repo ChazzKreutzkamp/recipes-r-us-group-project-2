@@ -56,6 +56,12 @@
   .temp-img{
     background-color: rgb(85, 114, 68);
   }
+  .account-info {
+    background-color: rgb(85, 114, 68);
+  }
+  .checkbox-section{
+    margin:30px;
+  }
  
   
   @media screen and (max-width: 1024px) {
