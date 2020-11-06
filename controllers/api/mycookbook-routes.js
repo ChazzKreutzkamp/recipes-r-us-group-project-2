@@ -24,7 +24,7 @@ router.get('/:id', (req, res) => {
     })
         .then(dbPostData => {
             if (!dbPostData) {
-                res.status(404).json({ message: 'No post found with this id' });
+                res.status(404).json({ message: 'No cookbook found with this id' });
                 return;
             }
             res.json(dbPostData);
@@ -36,7 +36,7 @@ router.get('/:id', (req, res) => {
 });
 
 router.post('/', (req, res) => {
-    Post.create({
+    MyCookbook.create({
         liked: req.body.liked,
         recipe_id: req.body.recipe_id,
         user_id: req.session.user_id
@@ -46,4 +46,41 @@ router.post('/', (req, res) => {
             console.log(err);
             res.status(500).json(err);
         });
+});
+
+router.post('/myrecipes', (req, res) => {
+    MyCookbook_Recipes.create({
+        mycookbook_id: req.body.mycookbook_id,
+        recipe_id: req.body.recipe_id
+    })
+        .then(dbPostData => res.json(dbPostData))
+        .catch(err => {
+            console.log(err);
+            res.status(500).json(err);
+        });
+});
+
+router.put('/liked/:id', (req, res) => {
+    MyCookbook.update(
+        {
+            liked: req.body.liked
+        },
+        {
+            where: {
+                id: req.params.id
+            }
+        }
+    )
+        .then(dbPostData => {
+            if (!dbPostData) {
+                res.status(404).json({ message: 'No cookbook found with this is' });
+                return;
+            }
+            res.json(dbPostData);
+        })
+        .catch(err => {
+            console.log(err);
+            res.status(500).json(err);
+        });
 })
+module.exports = router;

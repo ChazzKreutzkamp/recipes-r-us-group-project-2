@@ -34,6 +34,70 @@ router.get('/:id', (req, res) => {
         });
 });
 
+router.post('/', (req, res) => {
+    Recipes.create({
+        title: req.body.title,
+        yield: req.body.yield,
+        cook_time: req.body.cook_time,
+        cuisine: req.body.cuisine,
+        description: req.body.description,
+        directions: req.body.directions,
+        image_filename: req.body.image_filename,
+        user_id: req.session.user_id
+    })
+        .then(dbPostData => res.json(dbPostData))
+        .catch(err => {
+            console.log(err);
+            res.status(500).json(err);
+        });
+})
+router.put('/image/:id', (req, res) => {
+    Recipes.update(
+        {
+            image_filename: req.body.image_filename
+        },
+        {
+            where: {
+                id: req.params.id
+            }
+        }
+    )
+        .then(dbPostData => {
+            if (!dbPostData) {
+                res.status(404).json({ message: 'No recipe found with this is' });
+                return;
+            }
+            res.json(dbPostData);
+        })
+        .catch(err => {
+            console.log(err);
+            res.status(500).json(err);
+        });
+})
+router.put('/featured/:id', (req, res) => {
+    Recipes.update(
+        {
+            featured: req.body.featured
+        },
+        {
+            where: {
+                id: req.params.id
+            }
+        }
+    )
+        .then(dbPostData => {
+            if (!dbPostData) {
+                res.status(404).json({ message: 'No recipe found with this is' });
+                return;
+            }
+            res.json(dbPostData);
+        })
+        .catch(err => {
+            console.log(err);
+            res.status(500).json(err);
+        });
+})
+
 router.put('/title/:id', (req, res) => {
     Recipes.update(
         {
