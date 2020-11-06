@@ -17,14 +17,15 @@ router.get('/:id', (req, res) => {
         attributes: { exclude: ['password'] },
         where: {
             id: req.params.id
-        },
+        }
+        ,
         include: [
             {
-                model: MyCookbook,
+                model: MyCookbook
+                ,
                 include: {
                     model: Recipes,
-                    through: MyCookbook_Recipes,
-                    as: 'My_Cookbook_Recipes'
+                    through: MyCookbook_Recipes
                 }
             }
         ]
