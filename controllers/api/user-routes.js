@@ -1,3 +1,4 @@
+// Note to self once the api's are tested to replace some of the params to session
 const router = require('express').Router();
 const { User, MyCookbook, Recipes, MyCookbook_Recipes } = require('../../models');
 
@@ -17,15 +18,12 @@ router.get('/:id', (req, res) => {
         attributes: { exclude: ['password'] },
         where: {
             id: req.params.id
-        }
-        ,
+        },
         include: [
             {
-                model: MyCookbook
-                ,
+                model: MyCookbook,
                 include: {
-                    model: Recipes,
-                    through: MyCookbook_Recipes
+                    model: Recipes
                 }
             }
         ]

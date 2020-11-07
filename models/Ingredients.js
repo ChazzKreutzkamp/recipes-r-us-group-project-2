@@ -31,7 +31,7 @@ Ingredients.init(
         sequelize,
         freezeTableName: true,
         underscored: true,
-        modelName: 'ingredients'
+        modelName: 'post'
     }
 );
 

@@ -10,11 +10,20 @@ MyCookbook_Recipes.init(
             primaryKey: true,
             autoIncrement: true
         },
+        liked: {
+            type: DataTypes.TINYINT,
+            allowNull: false,
+            defaultValue: 0,
+            validate: {
+                min: -1,
+                max: 1
+            }
+        },
         mycookbook_id: {
             type: DataTypes.INTEGER,
             allowNull: false,
             references: {
-                model: 'user',
+                model: 'mycookbook',
                 key: 'id'
             }
         },
@@ -32,7 +41,7 @@ MyCookbook_Recipes.init(
         timestamps: false,
         freezeTableName: true,
         underscored: true,
-        modelName: 'mycookbook_recipes'
+        modelName: 'vote'
     }
 );
 

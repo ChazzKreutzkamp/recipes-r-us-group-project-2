@@ -1,9 +1,9 @@
 const User = require('./User');
 const Recipes = require('./Recipes');
 const MyCookbook = require('./MyCookbook');
-const Directions = require('./MyCookbook');
-const Ingredients = require('./MyCookbook');
-const MyCookbook_Recipes = require('./MyCookbook');
+const Directions = require('./Directions');
+const Ingredients = require('./Ingredients');
+const MyCookbook_Recipes = require('./MyCookbook_Recipes');
 
 // associations will go here
 User.hasMany(Recipes, {
@@ -12,9 +12,6 @@ User.hasMany(Recipes, {
 
 Recipes.belongsTo(User, {
     foreignKey: 'user_id',
-    onDelete: 'cascade',
-    onUpdate: 'cascade',
-    hooks: true
 });
 
 User.hasOne(MyCookbook, {
@@ -22,10 +19,7 @@ User.hasOne(MyCookbook, {
 });
 
 MyCookbook.belongsTo(User, {
-    foreignKey: 'user_id',
-    onDelete: 'cascade',
-    onUpdate: 'cascade',
-    hooks: true
+    foreignKey: 'user_id'
 });
 
 User.hasMany(Recipes, {
@@ -34,20 +28,19 @@ User.hasMany(Recipes, {
 
 Recipes.belongsTo(User, {
     foreignKey: 'user_id',
-    onDelete: 'cascade',
-    onUpdate: 'cascade',
-    hooks: true
 });
 
-
-MyCookbook.belongsToMany(Recipes, {
-    through: MyCookbook_Recipes,
-    foreignKey: 'mycookbook_id'
-});
 
 Recipes.belongsToMany(MyCookbook, {
     through: MyCookbook_Recipes,
+    // as: 'my_recipe',
     foreignKey: 'recipe_id'
+});
+
+MyCookbook.belongsToMany(Recipes, {
+    through: MyCookbook_Recipes,
+    // as: 'my_recipe',
+    foreignKey: 'mycookbook_id'
 });
 
 
@@ -57,9 +50,6 @@ Recipes.hasMany(Directions, {
 
 Directions.belongsTo(Recipes, {
     foreignKey: 'recipe_id',
-    onDelete: 'cascade',
-    onUpdate: 'cascade',
-    hooks: true
 });
 
 Recipes.hasMany(Ingredients, {
@@ -68,9 +58,6 @@ Recipes.hasMany(Ingredients, {
 
 Ingredients.belongsTo(Recipes, {
     foreignKey: 'recipe_id',
-    onDelete: 'cascade',
-    onUpdate: 'cascade',
-    hooks: true
 });
 
 

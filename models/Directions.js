@@ -31,7 +31,7 @@ Directions.init(
         sequelize,
         freezeTableName: true,
         underscored: true,
-        modelName: 'directions'
+        modelName: 'post'
     }
 );
 
