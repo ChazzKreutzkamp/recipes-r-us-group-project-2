@@ -45,18 +45,15 @@ Recipes.init(
             allowNull: false,
             validate: { len: [1] }
         },
-        directions: {
-            type: DataTypes.TEXT,
-            allowNull: false,
-            validate: { len: [1] }
-        },
+        // directions many to many
         image_filename: {
             type: DataTypes.STRING,
             allowNull: false,
             // default value should point at "no image found" image
             // defaultValue: 0,
             validate: { len: [1] }
-        },
+        }, 
+        // recipes many to many
         user_id: {
             type: DataTypes.INTEGER,
             references: {

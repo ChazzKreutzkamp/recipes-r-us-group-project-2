@@ -1,9 +1,9 @@
 const User = require('./User');
 const Recipes = require('./Recipes');
 const MyCookbook = require('./MyCookbook');
-const Directions = require('./MyCookbook');
-const Ingredients = require('./MyCookbook');
-const MyCookbook_Recipes = require('./MyCookbook');
+const Directions = require('./Directions');
+const Ingredients = require('./Ingredients');
+const MyCookbook_Recipes = require('./MyCookbook_Recipes');
 
 // associations will go here
 User.hasMany(Recipes, {
@@ -31,14 +31,16 @@ Recipes.belongsTo(User, {
 });
 
 
-MyCookbook.belongsToMany(Recipes, {
-    through: MyCookbook_Recipes,
-    foreignKey: 'mycookbook_id'
-});
-
 Recipes.belongsToMany(MyCookbook, {
     through: MyCookbook_Recipes,
+    // as: 'my_recipe',
     foreignKey: 'recipe_id'
+});
+
+MyCookbook.belongsToMany(Recipes, {
+    through: MyCookbook_Recipes,
+    // as: 'my_recipe',
+    foreignKey: 'mycookbook_id'
 });
 
 
