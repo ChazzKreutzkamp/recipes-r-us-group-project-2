@@ -8,6 +8,7 @@
   --text-color: whitesmoke;
   --background: rgb(85, 114, 68);
   --text-2-color: rgb(191, 138, 58);
+  --main-Font: font-family: 'Goldman', cursive;
 }
 body {
   background-color: var(--background);
@@ -18,7 +19,7 @@ nav {
   align-items: center;
   min-height: 15vh;
   background-color: var(--nav-color);
-  font-family: "Bungee Hairline", cursive;
+  font-family: 'Goldman', cursive;
 }
 .logo {
   color: var(--text-color);
@@ -71,7 +72,7 @@ section {
   margin: 30px;
 }
 .food-title {
-  font-family: "Bungee Hairline", cursive;
+  font-family: 'Goldman', cursive;
   color: var(--text-2-color);
   text-align: right;
   font-size: xx-large;
@@ -79,7 +80,34 @@ section {
 .dropdown-toggle {
   margin: 40px 40px 24px;
 }
-
+#homepage-title {
+  margin-top: 30px;
+  font-family: 'Goldman', cursive;
+  color: var(--text-color);
+  padding: 20px;
+  font-size: xx-large;
+  font-weight: bolder;
+}
+.homepage-body{
+  font-family: 'Goldman', cursive;
+  color: var(--text-color);
+  padding: 20px;
+  font-size: xx-large;
+  font-weight: bolder;
+}
+.card{
+  background-color: var(--background);
+}
+#current-recipe {
+  color: black;
+}
+#recipe-links{
+  color: black;
+}
+.favs{
+  list-style-type: none;
+  font-size: large;
+}
 @media screen and (max-width: 1024px) {
   .nav-links {
     width: 50%;
