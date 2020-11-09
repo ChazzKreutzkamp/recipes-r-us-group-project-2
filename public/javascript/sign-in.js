@@ -3,7 +3,13 @@ async function signupFormHandler(event) {
 
     const username = document.querySelector('#username-signup').value.trim();
     const email = document.querySelector('#email-signup').value.trim();
+    const passwordCheck = document.querySelector('#passwordcheck-signup').value.trim();
     const password = document.querySelector('#password-signup').value.trim();
+
+    if (passowrd !== passwordCheck) {
+        console.log("password, doesn't match the password in the verify password box");
+        return;
+    }
 
     if (username && email && password) {
         const response = await fetch('/api/users', {
