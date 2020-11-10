@@ -21,6 +21,7 @@ nav {
   background-color: var(--nav-color);
   font-family: 'Goldman', cursive;
 }
+
 .logo {
   color: var(--text-color);
   text-transform: uppercase;
@@ -37,8 +38,8 @@ a {
   color: var(--text-color);
   text-decoration: none;
   letter-spacing: 3px;
-
   font-size: 20px;
+  
 }
 .form_control {
   border-radius: 0;
@@ -108,6 +109,22 @@ section {
   list-style-type: none;
   font-size: large;
 }
+.food-img{
+  max-width: 30%;
+}
+.recipe-ingredients{
+  list-style-type: none;
+  font-size: medium;
+}
+.bottom-info h5{
+  font-size: 15px;
+}
+.email-ingredients{
+  font-size: medium;
+  color: var(--text-2-color);
+  padding-bottom: 20px;
+}
+
 @media screen and (max-width: 1024px) {
   .nav-links {
     width: 50%;
@@ -142,6 +159,7 @@ section {
 .nav-active {
   transform: translateX(0%);
 }
+
 
 @keyframes navLinkFade {
   from {
