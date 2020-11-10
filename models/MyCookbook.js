@@ -11,22 +11,6 @@ MyCookbook.init(
             primaryKey: true,
             autoIncrement: true
         },
-        liked: {
-            type: DataTypes.TINYINT,
-            allowNull: false,
-            defaultValue: 0,
-            validate: {
-                min: -1,
-                max: 1
-            }
-        },
-        recipe_id: {
-            type: DataTypes.INTEGER,
-            references: {
-                model: 'recipes',
-                key: 'id'
-            }
-        },
         user_id: {
             type: DataTypes.INTEGER,
             references: {
