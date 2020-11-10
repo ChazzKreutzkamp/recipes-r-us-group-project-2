@@ -12,6 +12,9 @@ User.hasMany(Recipes, {
 
 Recipes.belongsTo(User, {
     foreignKey: 'user_id',
+    onDelete: 'cascade',
+    onUpdate: 'cascade',
+    hooks: true
 });
 
 User.hasOne(MyCookbook, {
@@ -28,6 +31,9 @@ User.hasMany(Recipes, {
 
 Recipes.belongsTo(User, {
     foreignKey: 'user_id',
+    onDelete: 'cascade',
+    onUpdate: 'cascade',
+    hooks: true
 });
 
 
@@ -50,6 +56,9 @@ Recipes.hasMany(Directions, {
 
 Directions.belongsTo(Recipes, {
     foreignKey: 'recipe_id',
+    onDelete: 'cascade',
+    onUpdate: 'cascade',
+    hooks: true
 });
 
 Recipes.hasMany(Ingredients, {
@@ -58,6 +67,9 @@ Recipes.hasMany(Ingredients, {
 
 Ingredients.belongsTo(Recipes, {
     foreignKey: 'recipe_id',
+    onDelete: 'cascade',
+    onUpdate: 'cascade',
+    hooks: true
 });
 
 
