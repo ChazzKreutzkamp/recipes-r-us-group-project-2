@@ -12,7 +12,7 @@ router.get('/', (req, res) => {
     })
         .then(dbPostData => {
             const posts = dbPostData.map(post => post.get({ plain: true }));
-            res.render('homepage', {
+            res.render('landing-page', {
                 posts,
                 loggedIn: req.session.loggedIn
             });
@@ -23,7 +23,7 @@ router.get('/', (req, res) => {
         });
 })
 
-router.get('/dashboard', (req, res) => {
+router.get('/homepage', (req, res) => {
     User.findOne({
         where: {
             id: req.session.id
@@ -45,7 +45,7 @@ router.get('/dashboard', (req, res) => {
 
             const user = dbPostData.get({ plain: true });
 
-            res.render('dashboard', {
+            res.render('homepage', {
                 user,
                 loggedIn: req.session.loggedIn
             });
@@ -66,9 +66,10 @@ router.get('/signup', (req, res) => {
 });
 
 router.get('/herestherecipe/:id', (req, res) => {
-    Recipes.findOne({
+    Recipes.findAll({
         where: {
-            id: req.params.id
+            id: req.params.id,
+            user_name: req.session.user_id
         },
         include: [
             {
@@ -76,6 +77,9 @@ router.get('/herestherecipe/:id', (req, res) => {
             },
             {
                 model: Directions
+            },
+            {
+                model: MyCookbook_Recipes
             }
         ]
     })
@@ -86,9 +90,11 @@ router.get('/herestherecipe/:id', (req, res) => {
             }
 
             const recipe = dbPostData.get({ plain: true });
+            const chosenRecipeID = req.params.id
 
             res.render('recipe', {
-                recipe
+                recipe,
+                chosenRecipeID
             });
         })
         .catch(err => {
