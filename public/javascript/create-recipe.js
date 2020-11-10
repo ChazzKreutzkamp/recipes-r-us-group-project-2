@@ -7,7 +7,9 @@ async function postRecipeHandler(event) {
     const cuisine = document.querySelector('input[name="cuisine"]').value;
     const description = document.querySelector('input[name="description"]').value;
     const image_filename = document.querySelector('input[name="image_filename"]').value;
-    const title = document.querySelector('input[name="post-title"]').value;
+    const title = document.querySelector('input[name="title"]').value;
+    const directions_list = document.querySelector('input[name="directions_list"]').value;
+    const ingredients_list = document.querySelector('input[name="ingredients_list"]').value;
 
 
     const response = await fetch(`/api/recipes`, {
@@ -19,6 +21,8 @@ async function postRecipeHandler(event) {
             description,
             cuisine,
             image_filename,
+            directions_list,
+            ingredients_list,
             user_id: req.session.user_id
         }),
         headers: {
@@ -28,7 +32,7 @@ async function postRecipeHandler(event) {
     // could there be a directions page?
     //With the way the api and models are set up this is one solution
     if (response.ok) {
-        document.location.replace('/directions/:id');
+        document.location.replace('/dashboard');
     } else {
         alert(response.statusText);
     }
