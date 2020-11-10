@@ -1,6 +1,7 @@
 async function postRecipeHandler(event) {
     event.preventDefault();
 
+    //A good portion of this will need to be edited to get the real input fields
     const title = document.querySelector('input[name="post-title"]').value;
     const yield = document.querySelector('input[name="yield"]').value;
     const cook_time = document.querySelector('input[name="cook_time"]').value;
@@ -8,6 +9,8 @@ async function postRecipeHandler(event) {
     const description = document.querySelector('input[name="description"]').value;
     const image_filename = document.querySelector('input[name="image_filename"]').value;
     const title = document.querySelector('input[name="title"]').value;
+
+    //For the demo
     const directions_list = document.querySelector('input[name="directions_list"]').value;
     const ingredients_list = document.querySelector('input[name="ingredients_list"]').value;
 
