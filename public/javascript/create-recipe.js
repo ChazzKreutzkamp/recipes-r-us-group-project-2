@@ -1,3 +1,10 @@
+
+
+
+
+
+
+
 async function postRecipeHandler(event) {
     event.preventDefault();
 
@@ -8,7 +15,7 @@ async function postRecipeHandler(event) {
     const cuisine = document.querySelector('input[name="cuisine"]').value;
     const description = document.querySelector('input[name="description"]').value;
     const image_filename = document.querySelector('input[name="image_filename"]').value;
-    const title = document.querySelector('input[name="title"]').value;
+    // const title = document.querySelector('input[name="title"]').value;
 
     //for demo
     const directions_list = document.querySelector('input[name="directions_list"]').value;
