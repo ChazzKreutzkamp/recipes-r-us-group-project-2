@@ -10,7 +10,7 @@ async function postRecipeHandler(event) {
     const image_filename = document.querySelector('input[name="image_filename"]').value;
     const title = document.querySelector('input[name="title"]').value;
 
-    //For the demo
+    //for demo
     const directions_list = document.querySelector('input[name="directions_list"]').value;
     const ingredients_list = document.querySelector('input[name="ingredients_list"]').value;
 
