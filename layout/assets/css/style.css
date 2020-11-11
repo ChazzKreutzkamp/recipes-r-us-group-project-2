@@ -2,13 +2,14 @@
   margin: 0;
   padding: 0;
   box-sizing: border-box;
+  font-family: 'Goldman', ;
 }
 :root {
   --nav-color: rgb(33, 33, 70);
   --text-color: whitesmoke;
   --background: rgb(85, 114, 68);
   --text-2-color: rgb(191, 138, 58);
-  --main-Font: font-family: 'Goldman', cursive;
+  
 }
 body {
   background-color: var(--background);
