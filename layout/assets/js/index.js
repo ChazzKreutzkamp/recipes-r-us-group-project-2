@@ -26,10 +26,14 @@ const ingredients =
         'mushroom cream soup'
     ]
 
+    
+
 
 for (let i =0; i < letscookit.length; i++ ){
     $('#Steps').append(`<li>${letscookit[i]}</li>
     `)}
+
+    
 
 for (let i =0; i < ingredients.length; i++){
     $('#ingredients').append(`<li>${ingredients[i]}</li>`)
@@ -43,14 +47,14 @@ $('#Steps li').on('click',(e)=>listbackground(e))
 
 
 function listbackground(e) {
-    console.log(e,'hi')
-    //select step//
-    //toggle it//
+    if($(e.target).hasClass('bg-danger')) {
+        $(e.target).removeClass('bg-danger');
 
-    //  -- which way it should toggle like off on//
-    //  --make line through list//
-    $( "#Steps li" ).addClass( "rowTask" );
-    
-    
+        const clicked =  $(e.target).index(0);
+        console.log('hello all', $(e.target).index(0))
+        console.log('da kidzz', $('#ingredients li:nth-child(1)'))
+    } else {
+        $(e.target).addClass('bg-danger');
+    }
 }
 
