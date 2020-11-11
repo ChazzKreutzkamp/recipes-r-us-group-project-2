@@ -2,9 +2,9 @@
 
 
 const letscookit = [
-    "hello",
-    "hi",
-    'hey',
+    "put three cups of rice and 4 cups of water in rice cooker",
+    "ground up some beef",
+    'when rice and beef are done cokking add 1 can of mushroom cream soup and add all three together',
     'hola',
     'sup',
     'blah',
