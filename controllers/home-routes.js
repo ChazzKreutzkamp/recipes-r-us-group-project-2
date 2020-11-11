@@ -65,6 +65,45 @@ router.get('/signin', (req, res) => {
     res.render('signin-page');
 });
 
+router.get('/search-results', (req, res) => {
+    if (req.session.loggedIn) {
+        res.redirect('/dashboard');
+        return;
+    }
+
+    res.render('search-results');
+});
+
+router.get('/newrecipe', (req, res) => {
+    if (req.session.loggedIn) {
+        res.redirect('/dashboard');
+        return;
+    }
+
+    res.render('newrecipe');
+});
+
+router.get('/account_info', (req, res) => {
+    if (req.session.loggedIn) {
+        res.redirect('/dashboard');
+        return;
+    }
+
+    res.render('account_info');
+});
+
+router.get('/search-results', (req, res) => {
+    if (req.session.loggedIn) {
+        res.redirect('/dashboard');
+        return;
+    }
+
+    res.render('search-results');
+});
+
+
+
+
 router.get('/herestherecipe/:id', (req, res) => {
     Recipes.findAll({
         where: {
