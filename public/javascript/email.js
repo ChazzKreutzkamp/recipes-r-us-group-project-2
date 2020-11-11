@@ -13,7 +13,7 @@
 
 async function emailIngredientsList(event) {
     event.preventDefault();
-    const ingredientsList = document.querySelector('#ingredientslist');
+    const ingredientsList = document.querySelector('#ingredientslist'); //this will need to be edited in accordance to the handlebars
     Email.send({
         Host: "smtp.whatuwantoeat.com", //because we do not have a heroku server yet this will have to change.
         Username: "recipes.r.us.grocery.list.email@gmail.com",
