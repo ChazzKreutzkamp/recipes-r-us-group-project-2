@@ -53,7 +53,22 @@ Recipes.init(
             // defaultValue: 0,
             validate: { len: [1] }
         },
-        // recipes many to many
+
+
+        // these are temperary placeholders for the presentation
+        direction_list: {
+            type: DataTypes.TEXT,
+            allowNull: false,
+            validate: { len: [1] }
+        },
+        ingredient_list: {
+            type: DataTypes.TEXT,
+            allowNull: false,
+            validate: { len: [1] }
+        },
+        // end of placeholders
+
+
         user_id: {
             type: DataTypes.INTEGER,
             references: {
