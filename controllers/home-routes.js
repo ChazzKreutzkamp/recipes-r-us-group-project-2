@@ -56,13 +56,13 @@ router.get('/homepage', (req, res) => {
         });
 })
 
-router.get('/signup', (req, res) => {
+router.get('/signin', (req, res) => {
     if (req.session.loggedIn) {
         res.redirect('/dashboard');
         return;
     }
 
-    res.render('signup');
+    res.render('signin-page');
 });
 
 router.get('/herestherecipe/:id', (req, res) => {
