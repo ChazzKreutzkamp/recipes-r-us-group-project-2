@@ -21,9 +21,15 @@ router.get('/:id', (req, res) => {
         },
         include: [
             {
+                model: Recipes
+            },
+            {
                 model: MyCookbook,
                 include: {
-                    model: Recipes
+                    model: Recipes,
+                    through: {
+                        attributes: ["liked"]
+                    }
                 }
             }
         ]
@@ -51,7 +57,7 @@ router.post('/', (req, res) => {
             req.session.save(() => {
                 req.session.user_id = dbUserData.id;
                 req.session.username = dbUserData.username;
-                req.session.user_email =dbUserData.email;
+                req.session.user_email = dbUserData.email;
                 req.session.loggedIn = true;
 
                 res.json(dbUserData);

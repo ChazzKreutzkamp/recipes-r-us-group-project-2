@@ -98,6 +98,8 @@ router.post('/', (req, res) => {
         cuisine: req.body.cuisine,
         description: req.body.description,
         image_filename: req.body.image_filename,
+        direction_list: req.body.direction_list,
+        ingredient_list: req.body.ingredient_list,
         user_id: req.body.user_id
     })
         .then(dbPostData => res.json(dbPostData))
@@ -135,7 +137,11 @@ router.post('/direction', (req, res) => {
 
 //Recipe Put routes
 
-router.put('/complete/:id', (req, res) => {
+// this used to be /complete/:id
+// however it can be used for all of the put that are needed. 
+// Simply return only what you need to change. 
+// This replaces the need for all of the other put routes.
+router.put('/:id', (req, res) => {
     Recipes.update(
         {
             title: req.body.title,
@@ -145,174 +151,6 @@ router.put('/complete/:id', (req, res) => {
             cuisine: req.body.cuisine,
             description: req.body.description,
             image_filename: req.body.image_filename
-        },
-        {
-            where: {
-                id: req.params.id
-            }
-        }
-    )
-        .then(dbPostData => {
-            if (!dbPostData) {
-                res.status(404).json({ message: 'No recipe found with this is' });
-                return;
-            }
-            res.json(dbPostData);
-        })
-        .catch(err => {
-            console.log(err);
-            res.status(500).json(err);
-        });
-});
-
-router.put('/image/:id', (req, res) => {
-    Recipes.update(
-        {
-            image_filename: req.body.image_filename
-        },
-        {
-            where: {
-                id: req.params.id
-            }
-        }
-    )
-        .then(dbPostData => {
-            if (!dbPostData) {
-                res.status(404).json({ message: 'No recipe found with this is' });
-                return;
-            }
-            res.json(dbPostData);
-        })
-        .catch(err => {
-            console.log(err);
-            res.status(500).json(err);
-        });
-})
-
-router.put('/featured/:id', (req, res) => {
-    Recipes.update(
-        {
-            featured: req.body.featured
-        },
-        {
-            where: {
-                id: req.params.id
-            }
-        }
-    )
-        .then(dbPostData => {
-            if (!dbPostData) {
-                res.status(404).json({ message: 'No recipe found with this is' });
-                return;
-            }
-            res.json(dbPostData);
-        })
-        .catch(err => {
-            console.log(err);
-            res.status(500).json(err);
-        });
-})
-
-router.put('/title/:id', (req, res) => {
-    Recipes.update(
-        {
-            title: req.body.title
-        },
-        {
-            where: {
-                id: req.params.id
-            }
-        }
-    )
-        .then(dbPostData => {
-            if (!dbPostData) {
-                res.status(404).json({ message: 'No recipe found with this is' });
-                return;
-            }
-            res.json(dbPostData);
-        })
-        .catch(err => {
-            console.log(err);
-            res.status(500).json(err);
-        });
-});
-
-router.put('/description/:id', (req, res) => {
-    Recipes.update(
-        {
-            description: req.id.description
-        },
-        {
-            where: {
-                id: req.params.id
-            }
-        }
-    )
-        .then(dbPostData => {
-            if (!dbPostData) {
-                res.status(404).json({ message: 'No recipe found with this is' });
-                return;
-            }
-            res.json(dbPostData);
-        })
-        .catch(err => {
-            console.log(err);
-            res.status(500).json(err);
-        });
-});
-
-router.put('/cuisine/:id', (req, res) => {
-    Recipes.update(
-        {
-            cuisine: req.body.cuisine
-        },
-        {
-            where: {
-                id: req.params.id
-            }
-        }
-    )
-        .then(dbPostData => {
-            if (!dbPostData) {
-                res.status(404).json({ message: 'No recipe found with this is' });
-                return;
-            }
-            res.json(dbPostData);
-        })
-        .catch(err => {
-            console.log(err);
-            res.status(500).json(err);
-        });
-});
-
-router.put('/yield/:id', (req, res) => {
-    Recipes.update(
-        {
-            yield: req.body.yield
-        },
-        {
-            where: {
-                id: req.params.id
-            }
-        }
-    )
-        .then(dbPostData => {
-            if (!dbPostData) {
-                res.status(404).json({ message: 'No recipe found with this is' });
-                return;
-            }
-            res.json(dbPostData);
-        })
-        .catch(err => {
-            console.log(err);
-            res.status(500).json(err);
-        });
-});
-
-router.put('/cook_time/:id', (req, res) => {
-    Recipes.update(
-        {
-            cook_time: req.body.cook_time
         },
         {
             where: {
@@ -445,40 +283,6 @@ router.delete('/direction-delete/:id', (req, res) => {
             res.status(500).json(err);
         });
 })
-
-
-// search get routes
-
-
-
-// router.get('/:id', (req, res) => {
-//     Recipes.findOne({
-//         where: {
-//             id: req.params.id
-//         },
-//         include: [
-//             {
-//                 model: Ingredients
-//             },
-//             {
-//                 model: Directions
-//             }
-//         ]
-//     })
-//         .then(dbUserData => {
-//             if (!dbUserData) {
-//                 res.status(404).json({ message: 'No recipe found with this id' });
-//                 return;
-//             }
-//             res.json(dbUserData);
-//         })
-//         .catch(err => {
-//             console.log(err);
-//             res.status(500).json(err);
-//         });
-// });
-
-
 
 
 module.exports = router;

@@ -11,6 +11,7 @@ User.hasMany(Recipes, {
 });
 
 Recipes.belongsTo(User, {
+    as: 'my_recipes',
     foreignKey: 'user_id',
     onDelete: 'cascade',
     onUpdate: 'cascade',
