@@ -2,7 +2,7 @@
 const router = require('express').Router();
 const { Recipes, Ingredients, Directions } = require('../../models');
 
-//get routes
+
 
 router.get('/', (req, res) => {
     Recipes.findAll({})
@@ -40,7 +40,7 @@ router.get('/:id', (req, res) => {
         });
 });
 
-router.get('/', (req, res) => {
+router.get('/ingredient', (req, res) => {
     Ingredients.findAll({})
         .then(dbUserData => res.json(dbUserData))
         .catch(err => {
@@ -109,7 +109,7 @@ router.post('/', (req, res) => {
 
 router.post('/ingredient', (req, res) => {
     Ingredients.create({
-        quatity: req.body.quatity,
+        quantity: req.body.quantity,
         name: req.body.name,
         recipe_id: req.body.recipe_id
     })
@@ -188,6 +188,7 @@ router.put('/image/:id', (req, res) => {
             res.status(500).json(err);
         });
 })
+
 router.put('/featured/:id', (req, res) => {
     Recipes.update(
         {
@@ -425,6 +426,7 @@ router.delete('/ingredient-delete/:id', (req, res) => {
             res.status(500).json(err);
         });
 });
+
 router.delete('/direction-delete/:id', (req, res) => {
     Directions.destroy({
         where: {
@@ -443,5 +445,40 @@ router.delete('/direction-delete/:id', (req, res) => {
             res.status(500).json(err);
         });
 })
+
+
+// search get routes
+
+
+
+// router.get('/:id', (req, res) => {
+//     Recipes.findOne({
+//         where: {
+//             id: req.params.id
+//         },
+//         include: [
+//             {
+//                 model: Ingredients
+//             },
+//             {
+//                 model: Directions
+//             }
+//         ]
+//     })
+//         .then(dbUserData => {
+//             if (!dbUserData) {
+//                 res.status(404).json({ message: 'No recipe found with this id' });
+//                 return;
+//             }
+//             res.json(dbUserData);
+//         })
+//         .catch(err => {
+//             console.log(err);
+//             res.status(500).json(err);
+//         });
+// });
+
+
+
 
 module.exports = router;
