@@ -45,11 +45,7 @@ Recipes.init(
             allowNull: false,
             validate: { len: [1] }
         },
-        directions: {
-            type: DataTypes.TEXT,
-            allowNull: false,
-            validate: { len: [1] }
-        },
+        // directions many to many
         image_filename: {
             type: DataTypes.STRING,
             allowNull: false,
@@ -57,6 +53,7 @@ Recipes.init(
             // defaultValue: 0,
             validate: { len: [1] }
         },
+        // recipes many to many
         user_id: {
             type: DataTypes.INTEGER,
             references: {
@@ -69,7 +66,7 @@ Recipes.init(
         sequelize,
         freezeTableName: true,
         underscored: true,
-        modelName: 'post'
+        modelName: 'recipes'
     }
 );
 
