@@ -1,7 +1,7 @@
 {
   "name": "recipes-r-us-group-project-2",
   "version": "1.0.0",
-  "description": "",
+  "description": "<div class=\"container\">             <div class=\"row\">                 <div class=\"account-info\">                     <form>                         <div class=\"form-group\">                             <label for=\"exampleInputEmail1\">UserName</label>                             <input type=\"userName\" class=\"form-control rounded-0\" id=\"user-name\"                                 aria-describedby=\"userName\">                             <small id=\"emailHelp\" class=\"form-text text-muted\"></small>                         </div>                         <div class=\"form-group\">                             <label for=\"exampleInputPassword1\">Password</label>                             <input type=\"password\" class=\"form-control rounded-0\" id=\"exampleInputPassword1\">                         </div>                         <div class=\"form-group\">                             <label for=\"exampleInputEmail1\">Confirm Password</label>                             <input type=\"password-confirm\" class=\"form-control rounded-0\" id=\"password-confirm\"                                 aria-describedby=\"emailHelp\">                             <small id=\"emailHelp\" class=\"form-text text-muted\"></small>                         </div>                         <div class=\"form-group\">                             <label for=\"email\">Email</label>                             <input type=\"email\" class=\"form-control rounded-0\" id=\"email\">                         </div>",
   "main": "server.js",
   "dependencies": {
     "bcrypt": "^5.0.0",
