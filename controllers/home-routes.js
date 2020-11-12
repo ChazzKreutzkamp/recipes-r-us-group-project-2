@@ -116,8 +116,7 @@ router.get('/search-results', (req, res) => {
 router.get('/herestherecipe/:id', (req, res) => {
     Recipes.findAll({
         where: {
-            id: req.params.id,
-            user_name: req.session.user_id
+            id: req.params.id
         },
         include: [
             {
