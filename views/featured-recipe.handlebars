@@ -6,6 +6,7 @@
     <div class="homepage-body">
         <div class="row">
             <div id="current-recipe" class=" col-md-12 border border-warning rounded-0 text-center">
+                {{#each recipe as |recipe|}}
                 <h3>{{recipe.title}}</h3>
                 <img src="{{image_route}}" class="food-img" alt="">
                 <h5 class="recipe-description">Description</h5>
@@ -18,20 +19,19 @@
                 <h6 id="ingredientslist">{{recipe.ingredient_list}}</h6>
                 <h5>Directions</h5>
                 <h6>{{recipe.direction_list}}</h6>
+                {{/each}}
                 {{#if loggedIn}}
                 <button class="btn btn-warning rounded-0" id="email">Email Ingredients</button>
                 <button class="btn btn-warning rounded-0">Press here to like the recipe</button>
-                {{/if}}
-                {{#if isAdmin}}
-                <button class="btn btn-warning rounded-0" id="feature">Feature this recipe?</button>
                 {{/if}}
             </div>
         </div>
     </div>
 </div>
 <p class="invisible" id="useremail">{{user_email}}</p>
+{{#each recipe as |recipe|}}
 <p class="invisible" id="recipeid">{{recipe.id}}</p>
+{{/each}}
 <script src="https://code.jquery.com/jquery-3.4.1.min.js"></script>
-<script src="/javascript/featured.js"></script>
 <script src="https://smtpjs.com/v3/smtp.js"></script>
 <script src="/javascript/email.js"></script>
