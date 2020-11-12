@@ -9,6 +9,7 @@
   --text-color: whitesmoke;
   --background: rgb(85, 114, 68);
   --text-2-color: rgb(191, 138, 58);
+  --card-background: 
 }
 body {
   background-color: var(--background);
@@ -140,6 +141,16 @@ a {
 
 .invisible {
   opacity: 0.0;
+}
+.card-text{
+  font-size: small;
+}
+.card-header,
+.card-body{
+  background-color: chocolate;
+}
+#current-recipe{
+  background-color: chocolate;
 }
 
   
