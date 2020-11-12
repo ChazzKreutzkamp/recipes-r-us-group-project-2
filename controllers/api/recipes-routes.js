@@ -230,7 +230,6 @@ router.put('/:id', (req, res) => {
             image_filename: req.body.image_filename,
             direction_list: req.body.direction_list,
             ingredient_list: req.body.ingredient_list
-
         },
         {
             where: {
@@ -251,6 +250,29 @@ router.put('/:id', (req, res) => {
         });
 });
 
+router.put('featured/:id', (req, res) => {
+    Recipes.update(
+        {
+            featured: req.body.featured
+        },
+        {
+            where: {
+                id: req.params.id
+            }
+        }
+    )
+        .then(dbPostData => {
+            if (!dbPostData) {
+                res.status(404).json({ message: 'No recipe found with this is' });
+                return;
+            }
+            res.json(dbPostData);
+        })
+        .catch(err => {
+            console.log(err);
+            res.status(500).json(err);
+        });
+});
 //directions put routes
 
 router.put('/direction/:id', (req, res) => {
