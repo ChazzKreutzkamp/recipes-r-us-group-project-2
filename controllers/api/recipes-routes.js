@@ -133,7 +133,7 @@ router.post('/', (req, res) => {
         image_filename: req.body.image_filename,
         direction_list: req.body.direction_list,
         ingredient_list: req.body.ingredient_list,
-        user_id: req.body.user_id
+        user_id: req.session.user_id
     })
         .then(dbPostData => res.json(dbPostData))
         .catch(err => {
@@ -151,7 +151,7 @@ router.post('/', (req, res) => {
 
 // dev of image upload
 
-app.post('/uploadImage', (req, res) => {
+router.post('/uploadImage', (req, res) => {
     // 'profile_pic' is the name of our file input field in the HTML form
     let upload = multer({ storage: storage, fileFilter: helpers.imageFilter }).single('profile_pic');
 

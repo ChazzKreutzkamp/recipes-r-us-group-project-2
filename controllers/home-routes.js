@@ -12,7 +12,7 @@ router.get('/', (req, res) => {
     })
         .then(dbPostData => {
             const posts = dbPostData.map(post => post.get({ plain: true }));
-            res.render('landing-page', {
+            res.render('landingpage', {
                 posts,
                 loggedIn: req.session.loggedIn
             });
@@ -58,7 +58,7 @@ router.get('/homepage', (req, res) => {
 
 router.get('/signup', (req, res) => {
     if (req.session.loggedIn) {
-        res.redirect('/dashboard');
+        res.redirect('/homepage');
         return;
     }
 
@@ -67,7 +67,7 @@ router.get('/signup', (req, res) => {
 
 router.get('/signup/ifyouknowthisyouaretrusted/admin', (req, res) => {
     if (req.session.loggedIn) {
-        res.redirect('/dashboard');
+        res.redirect('/homepage');
         return;
     }
 
@@ -75,8 +75,8 @@ router.get('/signup/ifyouknowthisyouaretrusted/admin', (req, res) => {
 });
 
 router.get('/search-results', (req, res) => {
-    if (req.session.loggedIn) {
-        res.redirect('/dashboard');
+    if (!req.session.loggedIn) {
+        res.redirect('/');
         return;
     }
 
@@ -84,8 +84,8 @@ router.get('/search-results', (req, res) => {
 });
 
 router.get('/newrecipe', (req, res) => {
-    if (req.session.loggedIn) {
-        res.redirect('/dashboard');
+    if (!req.session.loggedIn) {
+        res.redirect('/');
         return;
     }
 
@@ -93,8 +93,8 @@ router.get('/newrecipe', (req, res) => {
 });
 
 router.get('/account_info', (req, res) => {
-    if (req.session.loggedIn) {
-        res.redirect('/dashboard');
+    if (!req.session.loggedIn) {
+        res.redirect('/');
         return;
     }
 
@@ -102,8 +102,8 @@ router.get('/account_info', (req, res) => {
 });
 
 router.get('/search-results', (req, res) => {
-    if (req.session.loggedIn) {
-        res.redirect('/dashboard');
+    if (!req.session.loggedIn) {
+        res.redirect('/');
         return;
     }
 
