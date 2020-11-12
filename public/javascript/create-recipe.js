@@ -48,4 +48,4 @@ async function postRecipeHandler(event) {
     }
 }
 
-document.querySelector('.new-post-form').addEventListener('submit', postRecipeHandler);
+document.querySelector('#new_recipe').addEventListener('click', postRecipeHandler);
