@@ -1,5 +1,6 @@
 // Note to self once the api's are tested to replace some of the params to session
 const router = require('express').Router();
+const sequelize = require('../../config/connection');
 const { Recipes, Ingredients, Directions } = require('../../models');
 const helpers = require('../../utils/helpers');
 
@@ -18,9 +19,35 @@ const storage = multer.diskStorage({
 });
 
 
-
 router.get('/', (req, res) => {
     Recipes.findAll({})
+        .then(dbUserData => res.json(dbUserData))
+        .catch(err => {
+            console.log(err);
+            res.status(500).json(err);
+        });
+});
+
+router.get('/random', (req, res) => {
+    Recipes.findAll({ 
+        order: sequelize.literal('rand()'), 
+        limit: 1
+    })
+        .then(dbUserData => {
+            if (!dbUserData) {
+                res.status(404).json({ message: 'error' });
+                return;
+            }
+            res.json(dbUserData);
+        })
+        .catch(err => {
+            console.log(err);
+            res.status(500).json(err);
+        });
+});
+
+router.get('/ingredient', (req, res) => {
+    Ingredients.findAll({})
         .then(dbUserData => res.json(dbUserData))
         .catch(err => {
             console.log(err);
@@ -55,16 +82,7 @@ router.get('/:id', (req, res) => {
         });
 });
 
-router.get('/ingredient', (req, res) => {
-    Ingredients.findAll({})
-        .then(dbUserData => res.json(dbUserData))
-        .catch(err => {
-            console.log(err);
-            res.status(500).json(err);
-        });
-});
-
-router.get('ingredient/:id', (req, res) => {
+router.get('/ingredient/:id', (req, res) => {
     Ingredients.findOne({
         where: {
             id: req.params.id
@@ -83,7 +101,7 @@ router.get('ingredient/:id', (req, res) => {
         });
 });
 
-router.get('direction/:id', (req, res) => {
+router.get('/direction/:id', (req, res) => {
     Directions.findOne({
         where: {
             id: req.params.id
