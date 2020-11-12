@@ -227,7 +227,10 @@ router.put('/:id', (req, res) => {
             cook_time: req.body.cook_time,
             cuisine: req.body.cuisine,
             description: req.body.description,
-            image_filename: req.body.image_filename
+            image_filename: req.body.image_filename,
+            direction_list: req.body.direction_list,
+            ingredient_list: req.body.ingredient_list
+
         },
         {
             where: {
