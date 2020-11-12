@@ -1,18 +1,21 @@
 async function postRecipeHandler(event) {
     event.preventDefault();
 
+    // alert("clicked");
+
     //A good portion of this will need to be edited to get the real input fields
-    const title = document.querySelector('#title').value;
-    const yield = document.querySelector('input[name="yield"]').value;
-    const cook_time = document.querySelector('input[name="cook_time"]').value;
-    const cuisine = document.querySelector('input[name="cuisine"]').value;
-    const description = document.querySelector('input[name="description"]').value;
-    const image_filename = document.querySelector('input[name="image_filename"]').value;
-    // const title = document.querySelector('input[name="title"]').value;
+    const title = document.querySelector('#input_title').value;
+    const yield = document.querySelector('#input_yield').value;
+    const cook_time = parseInt(document.querySelector('#input_cook_time').value);
+    const cuisine = document.querySelector('#input_cuisine').value;
+    const description = document.querySelector('#input_description').value;
+
+    const image_filename = document.querySelector('#input_img').value;
+
 
     //for demo
-    const directions_list = document.querySelector('input[name="directions_list"]').value;
-    const ingredients_list = document.querySelector('input[name="ingredients_list"]').value;
+    const direction_list = document.querySelector('#input_direction_list').value;
+    const ingredient_list = document.querySelector('#input_ingredients_list').value;
 
 
     const response = await fetch(`/api/recipes`, {
@@ -24,9 +27,9 @@ async function postRecipeHandler(event) {
             description,
             cuisine,
             image_filename,
-            directions_list,
-            ingredients_list,
-            user_id: req.session.user_id
+            direction_list,
+            ingredient_list
+            // user_id handled by api
         }),
         headers: {
             'Content-Type': 'application/json'
@@ -35,10 +38,11 @@ async function postRecipeHandler(event) {
     // could there be a directions page?
     //With the way the api and models are set up this is one solution
     if (response.ok) {
+        console.log("success");
         document.location.replace('/homepage');
     } else {
         alert(response.statusText);
     }
 }
 
-document.querySelector('.new-post-form').addEventListener('submit', postRecipeHandler);
+document.querySelector('#new_recipe_submit_button').addEventListener('click', postRecipeHandler);
