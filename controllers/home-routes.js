@@ -12,7 +12,7 @@ router.get('/', (req, res) => {
     })
         .then(dbPostData => {
             const posts = dbPostData.map(post => post.get({ plain: true }));
-            res.render('landingpage', {
+            res.render('landing-page', {
                 posts,
                 loggedIn: req.session.loggedIn
             });
@@ -56,13 +56,13 @@ router.get('/homepage', (req, res) => {
         });
 })
 
-router.get('/signin', (req, res) => {
+router.get('/signup', (req, res) => {
     if (req.session.loggedIn) {
         res.redirect('/dashboard');
         return;
     }
 
-    res.render('signin-page');
+    res.render('signup');
 });
 
 router.get('/herestherecipe/:id', (req, res) => {
