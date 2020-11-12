@@ -56,13 +56,13 @@ router.get('/homepage', (req, res) => {
         });
 })
 
-router.get('/signin', (req, res) => {
+router.get('/signup', (req, res) => {
     if (req.session.loggedIn) {
         res.redirect('/dashboard');
         return;
     }
 
-    res.render('signin-page');
+    res.render('signup-page');
 });
 
 router.get('/search-results', (req, res) => {

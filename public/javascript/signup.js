@@ -6,6 +6,8 @@ async function signupFormHandler(event) {
     const passwordCheck = document.querySelector('#passwordcheck-signup').value.trim();
     const password = document.querySelector('#password-signup').value.trim();
 
+    console.log(username, email, passwordCheck, password)
+    
     if (password !== passwordCheck) {
         console.log("password, doesn't match the password in the verify password box");
         return;
@@ -31,4 +33,4 @@ async function signupFormHandler(event) {
     }
 }
 
-document.querySelector('.signup-form').addEventListener('submit', signupFormHandler);
+document.querySelector('.btn').addEventListener('submit', signupFormHandler);
