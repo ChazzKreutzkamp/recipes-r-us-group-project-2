@@ -23,10 +23,10 @@ router.get('/', (req, res) => {
         });
 })
 
-router.get('/homepage/:id', (req, res) => {
+router.get('/homepage', (req, res) => {
     User.findOne({
         where: {
-            id: req.session.id
+            id: req.session.user_id
         },
         include: [
             {
