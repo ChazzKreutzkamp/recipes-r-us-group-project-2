@@ -15,12 +15,11 @@ async function loginFormHandler(event) {
         });
 
         if (response.ok) {
-            console.log("URE GOOD")
             document.location.replace('/homepage');
 
         } else {
             alert(response.statusText);
-        } 
+        }
     }
 }
 

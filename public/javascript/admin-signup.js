@@ -19,6 +19,7 @@ async function signupFormHandler(event) {
         return;
     }
     const isAdmin = 1;
+
     if (username && email && password) {
         const response = await fetch('/api/users/admin', {
             method: 'post',
