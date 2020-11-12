@@ -13,19 +13,20 @@
 
 async function emailIngredientsList(event) {
     event.preventDefault();
-    const userEmail = req.session.user_email
+    const userEmail = document.querySelector('#useremail')
     const ingredientsList = document.querySelector('#ingredientslist'); //this will need to be edited in accordance to the handlebars
-    Email.send({
-        Host: "smtp.elasticemail.com", //because we do not have a heroku server yet this will have to change.
-        Username: "recipes.r.us.grocery.list.email@gmail.com",
-        Password: "4F50915D6EDEC86355968E1A4B8355B7A25B",
-        To: userEmail,
-        From: "recipes.r.us.grocery.list.email@gmail.com",
-        Subject: "Your Grocery List",
-        Body: ingredientsList
-    }).then(
-        message => alert(message)
-    );
+    console.log(userEmail, ingredientsList);
+    // Email.send({
+    //     Host: "smtp.elasticemail.com", //because we do not have a heroku server yet this will have to change.
+    //     Username: "recipes.r.us.grocery.list.email@gmail.com",
+    //     Password: "4F50915D6EDEC86355968E1A4B8355B7A25B",
+    //     To: userEmail,
+    //     From: "recipes.r.us.grocery.list.email@gmail.com",
+    //     Subject: "Your Grocery List",
+    //     Body: ingredientsList
+    // }).then(
+    //     message => alert(message)
+    // );
 }
 
 document.querySelector('#email').addEventListener('click', emailIngredientsList);

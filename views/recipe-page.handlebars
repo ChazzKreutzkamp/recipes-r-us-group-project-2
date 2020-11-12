@@ -7,19 +7,20 @@
         <div class="row">
             <div id="current-recipe" class=" col-md-12 border border-warning rounded-0 text-center">
                 <h3>{{recipe.title}}</h3>
-                <img src="{{recipe.image_route}}" class="food-img" alt="">
-                <h5 class="recipe-description">{{recipe.recipe-description}}</h5>
+                <img src="{{image_route}}" class="food-img" alt="">
+                <h5 class="recipe-description">Description</h5>
+                <h6>{{recipe.description}}</h6>
                 <h5>Cook time</h5>
                 <h6>{{recipe.cooktime}}</h6>
                 <h5>Yield</h5>
                 <h6>{{recipe.yield}}</h6>
                 <h5>Recipe Ingredients</h5>
-                <h6>{{recipe.ingredients_list}}</h6>
+                <h6 id="ingredientslist">{{recipe.ingredient_list}}</h6>
                 <h5>Directions</h5>
-                <h6>{{recipe.directions_list}}</h6>
+                <h6>{{recipe.direction_list}}</h6>
                 {{#if loggedIn}}
-                <button>Email Ingredients</button>
-                <button>Press here to like the recipe</button>
+                <button class="btn btn-warning rounded-0" id="email">Email Ingredients</button>
+                <button class="btn btn-warning rounded-0">Press here to like the recipe</button>
                 {{/if}}
                 {{#if isAdmin}}
                 <button>Feature this recipe?</button>
@@ -28,5 +29,6 @@
         </div>
     </div>
 </div>
+<p class="invisible" id="useremail">{{user_email}}</p>
 <script src="https://smtpjs.com/v3/smtp.js"></script>
 <script src="/javascript/email.js"></script>
