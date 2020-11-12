@@ -22,6 +22,7 @@
 
     <div class="collapse navbar-collapse" id="navbarSupportedContent">
         <ul class="navbar-nav mr-auto">
+            {{#if loggedIn}}
             <li class="nav-item active">
                 <a class="nav-link" href="#">Featured <span class="sr-only">(current)</span></a>
             </li>
@@ -32,6 +33,12 @@
             <li class="nav-item">
                 <a class="nav-link" href="#" tabindex="-1" aria-disabled="false">My Recipes</a>
             </li>
+
+            <li class="nav-item">
+                <button class="btn btn-outline-warning rounded-0 my-2 my-sm-0" type="click" id="logout"> logout
+                </button>
+            </li>
+            {{/if}}
         </ul>
         <form class="form-inline my-2 my-lg-0">
             <input class="form-control mr-sm-2 rounded-0" type="search" placeholder="Search" aria-label="Search">
@@ -48,7 +55,7 @@
 <body>
 
     {{{ body }}}
-    
+
 
     <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js"
         integrity="sha384-DfXdz2htPH0lsSSs5nCTpuj/zy4C+OGpamoFVy38MVBnE+IbbVYUew+OrCXaRkfj"
@@ -60,6 +67,10 @@
         integrity="sha384-w1Q4orYjBQndcko6MimVbzY0tgp4pWB4lZ7lr30WKz0vr/aWKhXdBNmNb5D92v7s"
         crossorigin="anonymous"></script>
     <script src="/javascript/navSlide.js"></script>
+    {{#if loggedIn}}
+    <script src="/javascript/logout.js"></script>
+    <script src="/javascript/inactivity.js"></script>
+    {{/if}}
 </body>
 
 </html>
