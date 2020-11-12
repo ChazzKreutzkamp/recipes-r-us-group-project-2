@@ -8,12 +8,12 @@ const helpers = require('../../utils/helpers');
 const multer = require('multer')
 
 const storage = multer.diskStorage({
-    destination: function(req, file, cb) {
+    destination: function (req, file, cb) {
         cb(null, 'uploads/');
     },
 
     // By default, multer removes file extensions so let's add them back
-    filename: function(req, file, cb) {
+    filename: function (req, file, cb) {
         cb(null, file.fieldname + '-' + Date.now() + path.extname(file.originalname));
     }
 });
@@ -29,8 +29,8 @@ router.get('/', (req, res) => {
 });
 
 router.get('/random', (req, res) => {
-    Recipes.findAll({ 
-        order: sequelize.literal('rand()'), 
+    Recipes.findAll({
+        order: sequelize.literal('rand()'),
         limit: 1
     })
         .then(dbUserData => {
@@ -151,11 +151,11 @@ router.post('/', (req, res) => {
 
 // dev of image upload
 
-app.post('/uploadImage', (req, res) => {
+router.post('/uploadImage', (req, res) => {
     // 'profile_pic' is the name of our file input field in the HTML form
     let upload = multer({ storage: storage, fileFilter: helpers.imageFilter }).single('profile_pic');
 
-    upload(req, res, function(err) {
+    upload(req, res, function (err) {
         // req.file contains information of uploaded file
         // req.body contains information of text fields, if there were any
 
