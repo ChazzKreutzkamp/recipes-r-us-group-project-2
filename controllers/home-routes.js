@@ -117,7 +117,8 @@ router.get('/recipepage/:id', (req, res) => {
             res.render('recipe-page', {
                 recipe,
                 loggedIn: req.session.loggedIn,
-                user_email: req.session.user_email
+                user_email: req.session.user_email,
+                isAdmin: req.session.isAdmin
             });
         })
         .catch(err => {
@@ -150,7 +151,8 @@ router.get('/edit-recipe/:id', (req, res) => {
 
             res.render('editRecipe', {
                 recipe,
-                loggedIn: req.session.loggedIn
+                loggedIn: req.session.loggedIn,
+                isAdmin: req.session.isAdmin
             });
         })
         .catch(err => {
