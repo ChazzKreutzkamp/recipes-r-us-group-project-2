@@ -1,12 +1,9 @@
 async function deleteRecipeHandler(event) {
-    event.preventDefault();
+    console.log(event.target.classList);
     if (event.target.classList.contains('delete')) {
 
-
         const id = event.target.id;
-        console.log(id);
 
-        console.log(id);
         const response = await fetch(`/api/recipes/recipe-delete/` + id, {
             method: 'DELETE'
         });
@@ -17,6 +14,7 @@ async function deleteRecipeHandler(event) {
             alert(response.statusText);
         }
     }
+
 }
 
-document.querySelector('.somethingunique').addEventListener('click', deleteRecipeHandler);
+document.querySelector('.somethingunique').addEventListener('click', deleteRecipeHandler, { capture: true });
