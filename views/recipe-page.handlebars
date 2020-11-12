@@ -1,0 +1,31 @@
+<div class="container">
+    <div class="row">
+        <div class="col-md-12  text-center rounded-0" id="homepage-title">WhAt yA WaNna eAt? RECIPE PAGE
+        </div>
+    </div>
+    <div class="homepage-body">
+        <div class="row">
+            <div id="current-recipe" class=" col-md-12 border border-warning rounded-0 text-center">
+                <h3>{{recipe.title}}</h3>
+                <img src="{{recipe.image_route}}" class="food-img" alt="">
+                <h5 class="recipe-description">{{recipe.recipe-description}}</h5>
+                <h5>Cook time</h5>
+                <h6>{{recipe.cooktime}}</h6>
+                <h5>Yield</h5>
+                <h6>{{recipe.yield}}</h6>
+                <h5>Recipe Ingredients</h5>
+                <h6>{{recipe.ingredients_list}}</h6>
+                <h5>Directions</h5>
+                <h6>{{recipe.directions_list}}</h6>
+                {{#if loggedIn}}
+                <button>Email Ingredients</button>
+                <button>Press here to like the recipe</button>
+                {{/if}}
+                {{#if isAdmin}}
+                <button>Feature this recipe?</button>
+                {{/if}}
+            </div>
+        </div>
+    </div>
+</div>
+<script src="/javascript/create-recipe.js"></script>

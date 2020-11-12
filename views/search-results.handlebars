@@ -1,0 +1,9 @@
+<h1>Your search results:</h1>
+{{#if recipes.length}}
+{{#each recipe |recipe|}}
+{{> searchresult recipe}}
+{{/each}}
+{{/if}}
+{{#else}}
+<h2>There are no search results, try searching for something else</h2>
+{{/else}}

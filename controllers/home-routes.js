@@ -65,6 +65,15 @@ router.get('/signup', (req, res) => {
     res.render('signup-page');
 });
 
+router.get('/signup/ifyouknowthisyouaretrusted/admin', (req, res) => {
+    if (req.session.loggedIn) {
+        res.redirect('/dashboard');
+        return;
+    }
+
+    res.render('admin-signup');
+});
+
 router.get('/search-results', (req, res) => {
     if (req.session.loggedIn) {
         res.redirect('/dashboard');
