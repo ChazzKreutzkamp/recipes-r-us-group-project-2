@@ -23,13 +23,15 @@
                 <button class="btn btn-warning rounded-0">Press here to like the recipe</button>
                 {{/if}}
                 {{#if isAdmin}}
-                <button>Feature this recipe?</button>
+                <button class="btn btn-warning rounded-0" id="feature">Feature this recipe?</button>
                 {{/if}}
             </div>
         </div>
     </div>
 </div>
 <p class="invisible" id="useremail">{{user_email}}</p>
+<p class="invisible" id="recipeid">{{recipe.id}}</p>
 <script src="https://code.jquery.com/jquery-3.4.1.min.js"></script>
+<script src="/javascript/featured.js"></script>
 <script src="https://smtpjs.com/v3/smtp.js"></script>
 <script src="/javascript/email.js"></script>
