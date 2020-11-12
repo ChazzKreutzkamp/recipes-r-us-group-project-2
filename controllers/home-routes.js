@@ -24,29 +24,16 @@ router.get('/', (req, res) => {
 })
 
 router.get('/homepage', (req, res) => {
-    User.findOne({
+    Recipes.findAll({
         where: {
-            id: req.session.user_id
-        },
-        include: [
-            {
-                model: MyCookbook,
-                include: {
-                    model: Recipes
-                }
-            }
-        ]
+            user_id: req.session.user_id
+        }
     })
         .then(dbPostData => {
-            if (!dbPostData) {
-                res.status(404).json({ message: 'No User found with this id' });
-                return;
-            }
-
-            const user = dbPostData.get({ plain: true });
+            const recipe = dbPostData.map(recipes => recipes.get({ plain: true }));
 
             res.render('homepage', {
-                user,
+                recipe,
                 loggedIn: req.session.loggedIn
             });
         })
@@ -113,23 +100,11 @@ router.get('/search-results', (req, res) => {
 
 
 
-router.get('/herestherecipe/:id', (req, res) => {
-    Recipes.findAll({
+router.get('/recipepage/:id', (req, res) => {
+    Recipes.findOne({
         where: {
-            id: req.params.id,
-            user_name: req.session.user_id
-        },
-        include: [
-            {
-                model: Ingredients
-            },
-            {
-                model: Directions
-            },
-            {
-                model: MyCookbook_Recipes
-            }
-        ]
+            id: req.params.id
+        }
     })
         .then(dbPostData => {
             if (!dbPostData) {
@@ -138,11 +113,11 @@ router.get('/herestherecipe/:id', (req, res) => {
             }
 
             const recipe = dbPostData.get({ plain: true });
-            const chosenRecipeID = req.params.id
 
-            res.render('recipe', {
+            res.render('recipe-page', {
                 recipe,
-                chosenRecipeID
+                loggedIn: req.session.loggedIn,
+                user_email: req.session.user_email
             });
         })
         .catch(err => {

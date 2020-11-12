@@ -1,20 +1,22 @@
 async function deleteRecipeHandler(event) {
     event.preventDefault();
-
-    const id = window.location.toString().split('/')[
-        window.location.toString().split('/').length - 1
-    ];
+    if (event.target.classList.contains('delete')) {
 
 
-    const response = await fetch(`/api/recipes/${id}`, {
-        method: 'DELETE'
-    });
+        const id = event.target.id;
+        console.log(id);
 
-    if (response.ok) {
-        document.location.replace('/homepage');
-    } else {
-        alert(response.statusText);
+        console.log(id);
+        const response = await fetch(`/api/recipes/recipe-delete/` + id, {
+            method: 'DELETE'
+        });
+
+        if (response.ok) {
+            document.location.replace('/homepage');
+        } else {
+            alert(response.statusText);
+        }
     }
 }
 
-document.querySelector('.delete-recipe-btn').addEventListener('click', deleteRecipeHandler);
+document.querySelector('.somethingunique').addEventListener('click', deleteRecipeHandler);

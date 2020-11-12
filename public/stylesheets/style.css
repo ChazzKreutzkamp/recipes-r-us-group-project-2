@@ -138,6 +138,10 @@ a {
   border-radius: none;
 }
 
+.invisible {
+  opacity: 0.0;
+}
+
   
 
 
