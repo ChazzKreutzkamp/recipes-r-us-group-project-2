@@ -26,7 +26,7 @@ router.get('/', (req, res) => {
 router.get('/homepage', (req, res) => {
     User.findOne({
         where: {
-            id: req.session.id
+            id: req.session.user_id
         },
         include: [
             {
@@ -62,8 +62,47 @@ router.get('/signup', (req, res) => {
         return;
     }
 
-    res.render('signup');
+    res.render('signup-page');
 });
+
+router.get('/search-results', (req, res) => {
+    if (req.session.loggedIn) {
+        res.redirect('/dashboard');
+        return;
+    }
+
+    res.render('search-results');
+});
+
+router.get('/newrecipe', (req, res) => {
+    if (req.session.loggedIn) {
+        res.redirect('/dashboard');
+        return;
+    }
+
+    res.render('newrecipe');
+});
+
+router.get('/account_info', (req, res) => {
+    if (req.session.loggedIn) {
+        res.redirect('/dashboard');
+        return;
+    }
+
+    res.render('account_info');
+});
+
+router.get('/search-results', (req, res) => {
+    if (req.session.loggedIn) {
+        res.redirect('/dashboard');
+        return;
+    }
+
+    res.render('search-results');
+});
+
+
+
 
 router.get('/herestherecipe/:id', (req, res) => {
     Recipes.findAll({

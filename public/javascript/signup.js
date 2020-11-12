@@ -6,6 +6,8 @@ async function signupFormHandler(event) {
     const passwordCheck = document.querySelector('#passwordcheck-signup').value.trim();
     const password = document.querySelector('#password-signup').value.trim();
 
+    console.log(username, email, passwordCheck, password)
+    
     if (password !== passwordCheck) {
         console.log("password, doesn't match the password in the verify password box");
         return;
@@ -24,11 +26,11 @@ async function signupFormHandler(event) {
 
         // check the response status
         if (response.ok) {
-            console.log('success');
+            document.location.replace('/homepage')
         } else {
             alert(response.statusText);
         }
     }
 }
 
-document.querySelector('.signup-form').addEventListener('submit', signupFormHandler);
+document.querySelector('#signup-form').addEventListener('click', signupFormHandler);

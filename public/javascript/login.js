@@ -15,12 +15,14 @@ async function loginFormHandler(event) {
         });
 
         if (response.ok) {
-            document.location.replace('/dashboard');
+            console.log("URE GOOD")
+            document.location.replace('/homepage');
+
         } else {
             alert(response.statusText);
-        }
+        } 
     }
 }
 
 
-document.querySelector('.login-form').addEventListener('submit', loginFormHandler);
+document.querySelector('#login-btn').addEventListener('click', loginFormHandler);

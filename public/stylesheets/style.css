@@ -56,7 +56,7 @@ a {
   transition: all 0.3 ease;
 }
 
-section {
+.user-info{
   background-color: var(--background);
 }
 .login {
@@ -68,9 +68,7 @@ section {
 .account-info {
   background-color: var(--background);
 }
-.checkbox-section {
-  margin: 30px;
-}
+
 .food-title {
   font-family: "Goldman", cursive;
   color: var(--text-2-color);
@@ -98,6 +96,12 @@ section {
 .card {
   background-color: var(--background);
 }
+.user-input{
+  display: flex;
+  
+  
+}
+/* recipe input page */
 #current-recipe {
   color: black;
 }
@@ -124,7 +128,6 @@ section {
   padding-bottom: 20px;
 }
 
-/* recipe input section */
 #recipe_input {
   display: flex;
   flex-direction: column;
@@ -134,27 +137,9 @@ section {
 .form_control{
   border-radius: none;
 }
-/* .recipe_input {
-  min-height: 20vh;
-  display: flex;
-  justify-content: center;
- margin: 30px;
-  align-items: center;
-}
-.recipe_list{
-  display: flex;
-  padding: 0.5rem;
-  font-size: 2rem;
-  border: none;
-  flex-direction: column;
+
   
-}
-.recipe_list button {
-  justify-content: space-around;
-  margin-top: 30px;
-  cursor: pointer;
-  /* padding: 20px; */
-} */
+
 
 @media screen and (max-width: 1024px) {
   .nav-links {
