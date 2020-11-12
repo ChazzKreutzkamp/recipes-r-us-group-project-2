@@ -42,18 +42,25 @@
                 <input type="text" class="form-control" id="input_yield" value="{{recipe.yield}}">
             </div>
         </div>
-        
-        <div class="input-group mb-3">
-            <label for="input_img" class="col-sm-2 col-form-label">Choose Image</label>
-            {{!-- <div class="custom-file"> --}}
 
-                    {{!-- class="image_filename"  aria-describedby="inputGroupFileAddon01"--}}
+        <div class="form-group row">
+            <label for="input_img" class="col-sm-2 col-form-label">Choose Image</label>
+            <div class="col-sm-8">
+                <input type="text" class="form-control" id="input_img" value="{{recipe.image_filename}}">
+            </div>
+        </div>
+        
+        {{!-- <div class="input-group mb-3">
+            <label for="input_img" class="col-sm-2 col-form-label">Choose Image</label>
+            <div class="custom-file">
+
+                    {{!-- class="image_filename"  aria-describedby="inputGroupFileAddon01" --}}
 
                 <input type="text" class="form-control" id="input_img" 
                     value="{{recipe.img_filename}}">
-                {{!-- <label class="custom-file-label col-sm-9" for="input_img">Choose Image</label> --}}
-            {{!-- </div> --}}
-        </div>
+                <label class="custom-file-label col-sm-9" for="input_img">Choose Image</label>
+            </div>
+        </div> --}}
 
 
         {{!-- <form action="/profile" method="post" enctype="multipart/form-data">
