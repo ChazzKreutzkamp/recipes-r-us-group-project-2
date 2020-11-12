@@ -46,6 +46,27 @@ router.get('/random', (req, res) => {
         });
 });
 
+router.get('/featured', (req, res) => {
+    Recipes.findAll({
+        where: {
+            featured: 1
+        },
+        order: sequelize.literal('rand()'),
+        limit: 1
+    })
+        .then(dbUserData => {
+            if (!dbUserData) {
+                res.status(404).json({ message: 'error' });
+                return;
+            }
+            res.json(dbUserData);
+        })
+        .catch(err => {
+            console.log(err);
+            res.status(500).json(err);
+        });
+});
+
 router.get('/ingredient', (req, res) => {
     Ingredients.findAll({})
         .then(dbUserData => res.json(dbUserData))
