@@ -228,7 +228,8 @@ router.put('/:id', (req, res) => {
             cuisine: req.body.cuisine,
             description: req.body.description,
             image_filename: req.body.image_filename,
-            featured: req.body.featured
+            direction_list: req.body.direction_list,
+            ingredient_list: req.body.ingredient_list
         },
         {
             where: {

@@ -38,8 +38,9 @@
             {{/if}}
         </ul>
         <form class="form-inline my-2 my-lg-0">
-            <input class="form-control mr-sm-2 rounded-0" type="search" placeholder="Search" aria-label="Search">
-            <button class="btn btn-outline-warning rounded-0 my-2 my-sm-0" type="submit">Search</button>
+            <input class="form-control mr-sm-2 rounded-0" type="search" placeholder="Search" id="input_search"
+                aria-label="Search">
+            <button class="btn btn-outline-warning rounded-0 my-2 my-sm-0" type="submit" id="search-btn">Search</button>
         </form>
     </div>
     <div class="burger">
@@ -53,6 +54,9 @@
 
     {{{ body }}}
 
+
+
+    <script src="/javascript/search-function.js"></script>
 
     <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js"
         integrity="sha384-DfXdz2htPH0lsSSs5nCTpuj/zy4C+OGpamoFVy38MVBnE+IbbVYUew+OrCXaRkfj"

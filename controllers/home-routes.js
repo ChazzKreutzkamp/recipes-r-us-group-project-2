@@ -2,6 +2,7 @@ const router = require('express').Router();
 const sequelize = require('../config/connection');
 const { User, Ingredients, MyCookbook, MyCookbook_Recipes, Recipes, Directions } = require('../models');
 const { use } = require('./api');
+const { Op } = require("sequelize");
 
 router.get('/', (req, res) => {
     console.log(req.session);
@@ -88,77 +89,126 @@ router.get('/account_info', (req, res) => {
     res.render('account_info');
 });
 
-router.get('/search-results', (req, res) => {
-    if (!req.session.loggedIn) {
-        res.redirect('/');
-        return;
-    }
+router.get('/search-results/:searchTerm', async (req, res) => {
+        // input
+        var searchTerm = req.params.searchTerm;
+        var searchString = "%" + searchTerm + "%";
+        var searchVal = null;
+        var featured = null;      
 
-    res.render('search-results');
-});
+        // regex test to check if it is a number
+        var reg = new RegExp('^\\d+$');
+        let isnum = reg.test(req.params.searchTerm);
 
-
-
-
-router.get('/recipepage/:id', (req, res) => {
-    Recipes.findOne({
-        where: {
-            id: req.params.id
+        // if the user searches for "featured" it will find all featured items
+        if (searchTerm === "featured" || req.body.featured === 1) {
+            featured = 1
+        } else if (searchTerm === "not featured" || req.body.featured === 0) {
+            featured = 0
         }
-    })
-        .then(dbPostData => {
-            if (!dbPostData) {
-                res.status(404).json({ message: 'No recipe found with this id' });
-                return;
-            }
 
-            const recipe = dbPostData.get({ plain: true });
+        if (isnum != "") {
+            searchVal = parseInt(searchTerm)
+        }
 
-            res.render('recipe-page', {
-                recipe,
-                loggedIn: req.session.loggedIn,
-                user_email: req.session.user_email,
-                isAdmin: req.session.isAdmin
-            });
-        })
-        .catch(err => {
-            console.log(err);
-            res.status(500).json(err);
-        });
-})
-
-router.get('/edit-recipe/:id', (req, res) => {
-    Recipes.findOne({
-        where: {
-            id: req.params.id
-        },
-        include: [
-            {
-                model: Ingredients
+        Recipes.findAll({
+            where: {
+                [Op.or]: [
+                    { title: { [Op.like]: searchString } },
+                    { featured: featured },
+                    { yield: { [Op.like]: searchString } },
+                    { cook_time: searchVal },
+                    { cuisine: { [Op.like]: searchString } },
+                    { description: { [Op.like]: searchString } },
+                    { direction_list: { [Op.like]: searchString } },
+                    { ingredient_list: { [Op.like]: searchString } }
+                ]
             },
-            {
-                model: Directions
-            }
-        ]
-    })
-        .then(dbPostData => {
-            if (!dbPostData) {
-                res.status(404).json({ message: 'No recipe found with this id' });
-                return;
-            }
-
-            const recipe = dbPostData.get({ plain: true });
-
-            res.render('editRecipe', {
-                recipe,
-                loggedIn: req.session.loggedIn,
-                isAdmin: req.session.isAdmin
-            });
+            include: [
+                {
+                    model: User,
+                    attributes: ["id", "username"]
+                },
+                { model: Ingredients },
+                { model: Directions }
+            ]
         })
-        .catch(err => {
-            console.log(err);
-            res.status(500).json(err);
-        });
-})
+            .then(dbGetData => {
+                const recipe = dbGetData.map(recipes => recipes.get({ plain: true }));
 
-module.exports = router;
+                res.render('search-results', {
+                    recipe,
+                    loggedIn: req.session.loggedIn
+                });
+            })
+            .catch(err => {
+                console.log(err);
+                res.status(500).json(err);
+            });
+    });
+
+
+
+
+    router.get('/recipepage/:id', (req, res) => {
+        Recipes.findOne({
+            where: {
+                id: req.params.id
+            }
+        })
+            .then(dbPostData => {
+                if (!dbPostData) {
+                    res.status(404).json({ message: 'No recipe found with this id' });
+                    return;
+                }
+
+                const recipe = dbPostData.get({ plain: true });
+
+                res.render('recipe-page', {
+                    recipe,
+                    loggedIn: req.session.loggedIn,
+                    user_email: req.session.user_email,
+                    isAdmin: req.session.isAdmin
+                });
+            })
+            .catch(err => {
+                console.log(err);
+                res.status(500).json(err);
+            });
+    })
+
+    router.get('/edit-recipe/:id', (req, res) => {
+        Recipes.findOne({
+            where: {
+                id: req.params.id
+            },
+            include: [
+                {
+                    model: Ingredients
+                },
+                {
+                    model: Directions
+                }
+            ]
+        })
+            .then(dbPostData => {
+                if (!dbPostData) {
+                    res.status(404).json({ message: 'No recipe found with this id' });
+                    return;
+                }
+
+                const recipe = dbPostData.get({ plain: true });
+
+                res.render('editRecipe', {
+                    recipe,
+                    loggedIn: req.session.loggedIn,
+                    isAdmin: req.session.isAdmin
+                });
+            })
+            .catch(err => {
+                console.log(err);
+                res.status(500).json(err);
+            });
+    })
+
+    module.exports = router;
