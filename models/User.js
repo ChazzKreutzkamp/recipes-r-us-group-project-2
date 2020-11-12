@@ -32,6 +32,15 @@ User.init(
             allowNull: false,
             unique: true
         },
+        isAdmin: {
+            type: DataTypes.TINYINT,
+            allowNull: false,
+            defaultValue: 0,
+            validate: {
+                min: 0,
+                max: 1
+            }
+        },
         password: {
             type: DataTypes.STRING,
             allowNull: false,
