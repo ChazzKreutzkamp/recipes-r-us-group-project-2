@@ -1,6 +1,6 @@
 <h1>Your search results:</h1>
 {{#if recipe.length}}
-{{#each recipe |recipe|}}
+{{#each recipe as |recipe|}}
 {{> search-results recipe}}
 {{/each}}
 {{/if}}

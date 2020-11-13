@@ -25,24 +25,26 @@
                             class="img-thumbnail">
 
                     </div>
+                    {{#each recipe as |recipe|}}
                     <div class="col-1 col-sm-3 featured rounded-0">
                         <div class="card" style="width: 18rem;">
                             <img src="./pics/midcenturycard_1.svg" class="card-img-top" alt="...">
                             <div class="card-body">
-                                <h5 class="card-title"><a href="/heresyourrecipe/:{{recipe.id}}">{{recipe.title}}</a>
+                                <h5 class="card-title"><a href="/recipepage/{{id}}">{{recipe.title}}</a>
                                 </h5>
-                                <p class="card-text">Description: {{recipe.description}}</p>
+                                <p class="card-text">Description: {{description}}</p>
                             </div>
                             <ul class="list-group list-group-flush">
-                                <li class="list-group-item">Cook time: {{recipe.cook_time}}</li>
-                                <li class="list-group-item">Cuisine: {{recipe.cuisine}}</li>
-                                <li class="list-group-item">Yield: {{recipe.yield}}</li>
+                                <li class="list-group-item">Cook time: {{cook_time}}</li>
+                                <li class="list-group-item">Cuisine: {{cuisine}}</li>
+                                <li class="list-group-item">Yield: {{yield}}</li>
                             </ul>
 
                         </div>
 
 
                     </div>
+                    {{/each}}
 
                 </div>
             </div>

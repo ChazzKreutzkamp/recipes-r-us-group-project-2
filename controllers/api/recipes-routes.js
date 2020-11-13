@@ -46,6 +46,27 @@ router.get('/random', (req, res) => {
         });
 });
 
+router.get('/featured', (req, res) => {
+    Recipes.findAll({
+        where: {
+            featured: 1
+        },
+        order: sequelize.literal('rand()'),
+        limit: 1
+    })
+        .then(dbUserData => {
+            if (!dbUserData) {
+                res.status(404).json({ message: 'error' });
+                return;
+            }
+            res.json(dbUserData);
+        })
+        .catch(err => {
+            console.log(err);
+            res.status(500).json(err);
+        });
+});
+
 router.get('/ingredient', (req, res) => {
     Ingredients.findAll({})
         .then(dbUserData => res.json(dbUserData))
@@ -227,7 +248,9 @@ router.put('/:id', (req, res) => {
             cook_time: req.body.cook_time,
             cuisine: req.body.cuisine,
             description: req.body.description,
-            image_filename: req.body.image_filename
+            image_filename: req.body.image_filename,
+            direction_list: req.body.direction_list,
+            ingredient_list: req.body.ingredient_list
         },
         {
             where: {
@@ -248,6 +271,29 @@ router.put('/:id', (req, res) => {
         });
 });
 
+router.put('featured/:id', (req, res) => {
+    Recipes.update(
+        {
+            featured: req.body.featured
+        },
+        {
+            where: {
+                id: req.params.id
+            }
+        }
+    )
+        .then(dbPostData => {
+            if (!dbPostData) {
+                res.status(404).json({ message: 'No recipe found with this is' });
+                return;
+            }
+            res.json(dbPostData);
+        })
+        .catch(err => {
+            console.log(err);
+            res.status(500).json(err);
+        });
+});
 //directions put routes
 
 router.put('/direction/:id', (req, res) => {
