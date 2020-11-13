@@ -1,4 +1,4 @@
-<h1>Your search results:</h1>
+{{!-- <h1>Your search results:</h1>
 {{#if recipe.length}}
 {{#each recipe as |recipe|}}
 {{> search-results recipe}}
@@ -6,4 +6,17 @@
 {{/if}}
 {{#else}}
 <h2>There are no search results, try searching for something else</h2>
-{{/else}}
+{{/else}} --}}
+
+<div id="search-results" class="col-md-3 border border-warning rounded-0 text-center">
+        
+        <h1>Your search results:</h1>
+        {{#if recipe.length}}
+        {{#each recipe as |recipe|}}
+        {{> search-results recipe}}
+        {{/each}}
+        {{/if}}
+        {{#else}}
+        <h2>There are no search results, try searching for something else</h2>
+        {{/else}}   
+    </div>
