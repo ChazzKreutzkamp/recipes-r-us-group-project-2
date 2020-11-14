@@ -88,31 +88,15 @@ router.get('/signup/ifyouknowthisyouaretrusted/admin', (req, res) => {
     res.render('admin-signup');
 });
 
-router.get('/search-results', (req, res) => {
-    if (!req.session.loggedIn) {
-        res.redirect('/');
-        return;
-    }
-
-    res.render('search-results');
-});
-
 router.get('/newrecipe', (req, res) => {
     if (!req.session.loggedIn) {
         res.redirect('/');
         return;
     }
 
-    res.render('newrecipe');
-});
-
-router.get('/account_info', (req, res) => {
-    if (!req.session.loggedIn) {
-        res.redirect('/');
-        return;
-    }
-
-    res.render('account_info');
+    res.render('newrecipe', {
+        loggedIn: req.session.loggedIn
+    });
 });
 
 router.get('/search-results/:searchTerm', async (req, res) => {
