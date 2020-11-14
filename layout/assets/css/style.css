@@ -1,115 +1,184 @@
 * {
-    margin: 0;
-    padding: 0;
-    box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+  font-family: 'Goldman', ;
+}
+:root {
+  --nav-color: rgb(33, 33, 70);
+  --text-color: whitesmoke;
+  --background: rgb(85, 114, 68);
+  --text-2-color: rgb(191, 138, 58);
+  
+}
+body {
+  background-color: var(--background);
+}
+nav {
+  display: flex;
+  justify-content: space-around;
+  align-items: center;
+  min-height: 15vh;
+  background-color: var(--nav-color);
+  font-family: 'Goldman', cursive;
+}
+
+.logo {
+  color: var(--text-color);
+  text-transform: uppercase;
+  letter-spacing: 7px;
+  font-size: 30px;
+}
+a {
+  display: flex;
+  color: var(--text-color);
+  justify-content: space-around;
+  list-style: none;
+}
+.nav-links a {
+  color: var(--text-color);
+  text-decoration: none;
+  letter-spacing: 3px;
+  font-size: 20px;
+  
+}
+.form_control {
+  border-radius: 0;
+}
+
+.burger {
+  display: none;
+  cursor: pointer;
+}
+.burger div {
+  width: 25px;
+  height: 2px;
+  margin: 5px;
+  background-color: var(--text-color);
+  transition: all 0.3 ease;
+}
+
+section {
+  background-color: var(--background);
+}
+.login {
+  margin: 20px;
+}
+.temp-img {
+  background-color: var(--background);
+}
+.account-info {
+  background-color: var(--background);
+}
+.checkbox-section {
+  margin: 30px;
+}
+.food-title {
+  font-family: 'Goldman', cursive;
+  color: var(--text-2-color);
+  text-align: right;
+  font-size: xx-large;
+}
+.dropdown-toggle {
+  margin: 40px 40px 24px;
+}
+#homepage-title {
+  margin-top: 30px;
+  font-family: 'Goldman', cursive;
+  color: var(--text-color);
+  padding: 20px;
+  font-size: xx-large;
+  font-weight: bolder;
+}
+.homepage-body{
+  font-family: 'Goldman', cursive;
+  color: var(--text-color);
+  padding: 20px;
+  font-size: xx-large;
+  font-weight: bolder;
+}
+.card{
+  background-color: var(--background);
+}
+#current-recipe {
+  color: black;
+}
+#recipe-links{
+  color: black;
+}
+.favs{
+  list-style-type: none;
+  font-size: large;
+}
+.food-img{
+  max-width: 30%;
+}
+.recipe-ingredients{
+  list-style-type: none;
+  font-size: medium;
+}
+.bottom-info h5{
+  font-size: 15px;
+}
+.email-ingredients{
+  font-size: medium;
+  color: var(--text-2-color);
+  padding-bottom: 20px;
+}
+
+@media screen and (max-width: 1024px) {
+  .nav-links {
+    width: 50%;
   }
-  nav {
+}
+
+@media screen and (max-width: 768px) {
+  body {
+    overflow-x: hidden;
+  }
+  .nav-links {
+    position: absolute;
+    right: 0px;
+    height: 92vh;
+    top: 8vh;
+    background-color: var(--nav-color);
     display: flex;
-    justify-content: space-around;
+    flex-direction: column;
     align-items: center;
-    min-height: 15vh;
-    background-color: rgb(33, 33, 70);
-    font-family: "Bungee Hairline", cursive;
+    width: 30%;
+    transform: translate(100%);
+    transition: transform 0.5s ease-in;
   }
-  .logo {
-    color: whitesmoke;
-    text-transform: uppercase;
-    letter-spacing: 7px;
-    font-size: 30px;
+  .nav-links li {
+    opacity: 0;
   }
-  a {
-    display: flex;
-    color: whitesmoke;
-    justify-content: space-around;
-    list-style: none;
-  }
-  .nav-links a {
-    color: whitesmoke;
-    text-decoration: none;
-    letter-spacing: 3px;
-   
-    font-size: 20px;
-  }
-  .form_control{
-    border-radius: 0;
-  }
-
   .burger {
-    display: none;
-    cursor: pointer;
+    display: block;
   }
-  .burger div {
-    width: 25px;
-    height: 2px;
-    margin: 5px;
-    background-color: whitesmoke;
-    transition: all 0.3 ease;
-  }
+}
 
-  section {
-    background-color: rgb(85, 114, 68);
+.nav-active {
+  transform: translateX(0%);
+}
+
+
+@keyframes navLinkFade {
+  from {
+    opacity: 0;
+    transform: translateX(50px);
   }
-  .login {
-    margin: 20px;
-    
+  to {
+    opacity: 1;
+    transform: translateX(0px);
   }
-  .temp-img{
-    background-color: rgb(85, 114, 68);
-  }
- 
-  
-  @media screen and (max-width: 1024px) {
-    .nav-links {
-      width: 50%;
-    }
-  }
-  
-  @media screen and (max-width: 768px) {
-    body{
-      overflow-x: hidden;
-    }
-    .nav-links {
-      position: absolute;
-      right: 0px;
-      height: 92vh;
-      top: 8vh;
-      background-color: rgb(33, 33, 70);
-      display: flex;
-      flex-direction: column;
-      align-items: center;
-      width: 30%;
-      transform: translate(100%);
-      transition: transform 0.5s ease-in;
-    }
-    .nav-links li{
-      opacity: 0;
-    }
-    .burger{
-      display: block;
-    }
-  }
-  
-  .nav-active{
-    transform: translateX(0%);
-  }
-  
-  @keyframes navLinkFade{
-    from{
-      opacity: 0;
-      transform: translateX(50px);
-    }
-    to{
-      opacity: 1;
-      transform: translateX(0px);
-    }
-  }
-  
-  .toggle .line1{
-    transform: rotate(-70deg) translate(-5px,6px);
-  }
-  .toggle .line2{
+}
+
+.toggle .line1 {
+  transform: rotate(-70deg) translate(-5px, 6px);
+}
+.toggle .line2 {
   opacity: 0;
-  }
-  .toggle .line3{
-    transform: rotate(45deg) translate(-5px,-6px);
-  }
+}
+.toggle .line3 {
+  transform: rotate(45deg) translate(-5px, -6px);
+}

@@ -1,0 +1,9 @@
+<div class="card">
+    <h5 class="card-header"><a href="/recipepage/{{id}}">{{title}}</a>{{#if featured}}Featured by Admin!!!{{/if}}</h5>
+    <div class="card-body">
+        <h5 class="card-title">Description:</h5>
+        <p class="card-text">{{description}}</p>
+        <button class="btn btn-warning rounded-0"><a href="/edit-recipe/{{id}}">edit button</a></button>
+        <button class="btn btn-warning rounded-0 delete" id="{{id}}">delete recipe</button>
+    </div>
+</div>

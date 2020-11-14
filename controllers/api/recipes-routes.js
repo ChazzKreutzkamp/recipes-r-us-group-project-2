@@ -2,6 +2,21 @@
 const router = require('express').Router();
 const sequelize = require('../../config/connection');
 const { Recipes, Ingredients, Directions } = require('../../models');
+const helpers = require('../../utils/helpers');
+
+// This is used for uploading images.
+const multer = require('multer')
+
+const storage = multer.diskStorage({
+    destination: function (req, file, cb) {
+        cb(null, 'uploads/');
+    },
+
+    // By default, multer removes file extensions so let's add them back
+    filename: function (req, file, cb) {
+        cb(null, file.fieldname + '-' + Date.now() + path.extname(file.originalname));
+    }
+});
 
 
 router.get('/', (req, res) => {
@@ -14,8 +29,29 @@ router.get('/', (req, res) => {
 });
 
 router.get('/random', (req, res) => {
-    Recipes.findAll({ 
-        order: sequelize.literal('rand()'), 
+    Recipes.findAll({
+        order: sequelize.literal('rand()'),
+        limit: 1
+    })
+        .then(dbUserData => {
+            if (!dbUserData) {
+                res.status(404).json({ message: 'error' });
+                return;
+            }
+            res.json(dbUserData);
+        })
+        .catch(err => {
+            console.log(err);
+            res.status(500).json(err);
+        });
+});
+
+router.get('/featured', (req, res) => {
+    Recipes.findAll({
+        where: {
+            featured: 1
+        },
+        order: sequelize.literal('rand()'),
         limit: 1
     })
         .then(dbUserData => {
@@ -118,7 +154,7 @@ router.post('/', (req, res) => {
         image_filename: req.body.image_filename,
         direction_list: req.body.direction_list,
         ingredient_list: req.body.ingredient_list,
-        user_id: req.body.user_id
+        user_id: req.session.user_id
     })
         .then(dbPostData => res.json(dbPostData))
         .catch(err => {
@@ -126,6 +162,50 @@ router.post('/', (req, res) => {
             res.status(500).json(err);
         });
 });
+
+
+
+
+
+
+
+
+// dev of image upload
+
+router.post('/uploadImage', (req, res) => {
+    // 'profile_pic' is the name of our file input field in the HTML form
+    let upload = multer({ storage: storage, fileFilter: helpers.imageFilter }).single('profile_pic');
+
+    upload(req, res, function (err) {
+        // req.file contains information of uploaded file
+        // req.body contains information of text fields, if there were any
+
+        if (req.fileValidationError) {
+            return res.send(req.fileValidationError);
+        }
+        else if (!req.file) {
+            return res.send('Please select an image to upload');
+        }
+        else if (err instanceof multer.MulterError) {
+            return res.send(err);
+        }
+        else if (err) {
+            return res.send(err);
+        }
+
+        // Display uploaded image for user validation
+        res.send(`You have uploaded this image: <hr/><img src="${req.file.path}" width="500"><hr /><a href="./">Upload another image</a>`);
+    });
+});
+
+
+
+
+
+
+
+
+
 
 router.post('/ingredient', (req, res) => {
     Ingredients.create({
@@ -168,7 +248,9 @@ router.put('/:id', (req, res) => {
             cook_time: req.body.cook_time,
             cuisine: req.body.cuisine,
             description: req.body.description,
-            image_filename: req.body.image_filename
+            image_filename: req.body.image_filename,
+            direction_list: req.body.direction_list,
+            ingredient_list: req.body.ingredient_list
         },
         {
             where: {
@@ -189,6 +271,29 @@ router.put('/:id', (req, res) => {
         });
 });
 
+router.put('featured/:id', (req, res) => {
+    Recipes.update(
+        {
+            featured: req.body.featured
+        },
+        {
+            where: {
+                id: req.params.id
+            }
+        }
+    )
+        .then(dbPostData => {
+            if (!dbPostData) {
+                res.status(404).json({ message: 'No recipe found with this is' });
+                return;
+            }
+            res.json(dbPostData);
+        })
+        .catch(err => {
+            console.log(err);
+            res.status(500).json(err);
+        });
+});
 //directions put routes
 
 router.put('/direction/:id', (req, res) => {

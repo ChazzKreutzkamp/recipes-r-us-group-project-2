@@ -1,0 +1,29 @@
+<div class="container">
+    <div class="row">
+        <div class="col-md-12  text-center rounded-0" id="homepage-title">WELCOME TO THE FEATURED RECIPE MODERATION PAGE
+        </div>
+    </div>
+    <div class="homepage-body">
+        <div class="row">
+            <div id="current-recipe" class=" col-md-12 border border-warning rounded-0 text-center pt-4">
+
+                <h2>Current Featured Recipes:</h2>
+                <div class="defeatureList">
+                    {{#if recipe.length}}
+                    {{#each recipe as |recipe|}}
+                    {{> modRecipe recipe}}
+                    {{/each}}
+                    {{/if}}
+
+                    {{#unless recipe.length}}
+                    <h3>You haven't added any recipes yet</h3>
+                    {{/unless}}
+                </div>
+
+                <h2 class="invisible">heheheyoufoundme</h2>
+
+            </div>
+        </div>
+    </div>
+</div>
+<script src="/javascript/defeatured.js"></script>
