@@ -37,7 +37,8 @@ router.get('/homepage', (req, res) => {
 
             res.render('homepage', {
                 recipe,
-                loggedIn: req.session.loggedIn
+                loggedIn: req.session.loggedIn,
+                isAdmin: req.session.isAdmin
             });
         })
         .catch(err => {
@@ -58,6 +59,32 @@ router.get('/featured', (req, res) => {
         .then(dbPostData => {
             const recipe = dbPostData.map(post => post.get({ plain: true }));
             res.render('featured-recipe', {
+                recipe,
+                loggedIn: req.session.loggedIn,
+                user_email: req.session.user_email,
+                isAdmin: req.session.isAdmin
+            });
+        })
+        .catch(err => {
+            console.log(err);
+            res.status(500).json(err);
+        });
+})
+
+router.get('/modfeatured', (req, res) => {
+    console.log(req.session);
+    if (!req.session.isAdmin) {
+        res.redirect('/homepage');
+        return;
+    }
+    Recipes.findAll({
+        where: {
+            featured: 1
+        }
+    })
+        .then(dbPostData => {
+            const recipe = dbPostData.map(post => post.get({ plain: true }));
+            res.render('admin-featureModding', {
                 recipe,
                 loggedIn: req.session.loggedIn,
                 user_email: req.session.user_email,
