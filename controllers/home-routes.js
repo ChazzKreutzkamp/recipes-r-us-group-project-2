@@ -30,7 +30,14 @@ router.get('/homepage', (req, res) => {
     Recipes.findAll({
         where: {
             user_id: req.session.user_id
-        }
+        },
+        include: [
+            {
+                model: Recipes,
+                through: MyCookbook_Recipes,
+                as: 'liked_recipes'
+            }
+        ]
     })
         .then(dbPostData => {
             const recipe = dbPostData.map(recipes => recipes.get({ plain: true }));
