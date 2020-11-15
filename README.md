@@ -14,4 +14,4 @@ Email: chazz.kreutzkamp@gmail.com
 
 ## Image of the Application in Action:
 
-![al text](https://github.com/ChazzKreutzkamp/recipes-r-us-group-project-2/blob/main/readme-assets/homepage.JPG)
+![al text](https://github.com/ChazzKreutzkamp/recipes-r-us-group-project-2/blob/readme/readme-assets/homepage.JPG)
