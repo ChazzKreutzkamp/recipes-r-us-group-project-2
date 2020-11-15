@@ -42,13 +42,7 @@ router.get('/', (req, res) => {
                 { direction_list: { [Op.like]: searchString } },
                 { ingredient_list: { [Op.like]: searchString } }
             ]
-        },
-        include: [
-            {
-                model: User,
-                attributes: ["id", "username"]
-            },
-        ]
+        }
     })
         .then(dbUserData => {
             if (dbUserData.length == 0) {

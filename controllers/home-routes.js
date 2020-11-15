@@ -165,9 +165,7 @@ router.get('/search-results/:searchTerm', async (req, res) => {
             {
                 model: User,
                 attributes: ["id", "username"]
-            },
-            { model: Ingredients },
-            { model: Directions }
+            }
         ]
     })
         .then(dbGetData => {

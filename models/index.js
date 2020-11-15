@@ -8,35 +8,37 @@ User.hasMany(Recipes, {
 });
 
 Recipes.belongsTo(User, {
-    as: 'my_recipes',
     foreignKey: 'user_id',
-    onDelete: 'cascade',
-    onUpdate: 'cascade',
     hooks: true
 });
 
-User.hasMany(Recipes, {
-    foreignKey: 'user_id'
-});
-
-Recipes.belongsTo(User, {
-    foreignKey: 'user_id',
-    onDelete: 'cascade',
-    onUpdate: 'cascade',
-    hooks: true
-});
-
-
-Recipes.belongsToMany(User, {
+User.belongsToMany(Recipes, {
     through: MyCookbook_Recipes,
-    as: 'recipe_creator',
-    foreignKey: 'recipe_id'
-});
+    as: 'liked_recipe',
+    foreignKey: 'user_id'
+})
 
 Recipes.belongsToMany(User, {
     through: MyCookbook_Recipes,
     as: 'liked_recipe',
     foreignKey: 'recipe_id'
 });
+
+MyCookbook_Recipes.belongsTo(User, {
+    foreignKey: 'user_id'
+});
+
+MyCookbook_Recipes.belongsTo(Recipes, {
+    foreignKey: 'recipe_id'
+});
+
+User.hasMany(MyCookbook_Recipes, {
+    foreignKey: 'user_id'
+})
+
+Recipes.hasMany(MyCookbook_Recipes, {
+    foreignKey: 'recipe_id'
+})
+
 
 module.exports = { User, Recipes, MyCookbook_Recipes };
