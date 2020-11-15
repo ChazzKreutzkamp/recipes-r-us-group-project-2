@@ -13,4 +13,4 @@ Heroku Link: [whatuwannaeat.com]()
 
 ## Image of the Application in Action:
 
-![al text](https://github.com/ChazzKreutzkamp/recipes-r-us-group-project-2/blob/read-me/readme-assets/homepage.JPG)
+![al text](https://github.com/ChazzKreutzkamp/recipes-r-us-group-project-2/blob/read-me/readme-assets/landingpage.JPG)
