@@ -19,11 +19,11 @@ MyCookbook_Recipes.init(
                 max: 1
             }
         },
-        mycookbook_id: {
+        user_id: {
             type: DataTypes.INTEGER,
             allowNull: false,
             references: {
-                model: 'mycookbook',
+                model: 'user',
                 key: 'id'
             }
         },

@@ -1,6 +1,6 @@
 const router = require('express').Router();
 const sequelize = require('../config/connection');
-const { User, Ingredients, MyCookbook, MyCookbook_Recipes, Recipes, Directions } = require('../models');
+const { User, MyCookbook_Recipes, Recipes } = require('../models');
 const { use } = require('./api');
 const { Op } = require("sequelize");
 
@@ -27,16 +27,27 @@ router.get('/', (req, res) => {
 })
 
 router.get('/homepage', (req, res) => {
-    Recipes.findAll({
+    User.findOne({
         where: {
-            user_id: req.session.user_id
-        }
+            id: req.session.user_id
+        },
+        include: [
+            {
+                model: Recipes
+            },
+            {
+                model: MyCookbook_Recipes,
+                include: {
+                    model: Recipes,
+                }
+            }
+        ]
     })
         .then(dbPostData => {
-            const recipe = dbPostData.map(recipes => recipes.get({ plain: true }));
+            const user = dbPostData.get({ plain: true });
 
             res.render('homepage', {
-                recipe,
+                user,
                 loggedIn: req.session.loggedIn,
                 isAdmin: req.session.isAdmin
             });
@@ -165,9 +176,7 @@ router.get('/search-results/:searchTerm', async (req, res) => {
             {
                 model: User,
                 attributes: ["id", "username"]
-            },
-            { model: Ingredients },
-            { model: Directions }
+            }
         ]
     })
         .then(dbGetData => {
@@ -205,6 +214,7 @@ router.get('/recipepage/:id', (req, res) => {
                 recipe,
                 loggedIn: req.session.loggedIn,
                 user_email: req.session.user_email,
+                user_id: req.session.user_id,
                 isAdmin: req.session.isAdmin
             });
         })
@@ -218,15 +228,7 @@ router.get('/edit-recipe/:id', (req, res) => {
     Recipes.findOne({
         where: {
             id: req.params.id
-        },
-        include: [
-            {
-                model: Ingredients
-            },
-            {
-                model: Directions
-            }
-        ]
+        }
     })
         .then(dbPostData => {
             if (!dbPostData) {
