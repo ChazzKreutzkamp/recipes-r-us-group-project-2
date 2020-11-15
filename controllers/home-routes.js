@@ -27,23 +27,27 @@ router.get('/', (req, res) => {
 })
 
 router.get('/homepage', (req, res) => {
-    Recipes.findAll({
+    User.findOne({
         where: {
-            user_id: req.session.user_id
+            id: req.session.user_id
         },
         include: [
             {
-                model: Recipes,
-                through: MyCookbook_Recipes,
-                as: 'liked_recipes'
+                model: Recipes
+            },
+            {
+                model: MyCookbook_Recipes,
+                include: {
+                    model: Recipes,
+                }
             }
         ]
     })
         .then(dbPostData => {
-            const recipe = dbPostData.map(recipes => recipes.get({ plain: true }));
+            const user = dbPostData.get({ plain: true });
 
             res.render('homepage', {
-                recipe,
+                user,
                 loggedIn: req.session.loggedIn,
                 isAdmin: req.session.isAdmin
             });

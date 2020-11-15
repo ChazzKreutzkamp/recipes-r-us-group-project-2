@@ -24,12 +24,9 @@ router.get('/:id', (req, res) => {
                 model: Recipes
             },
             {
-                model: MyCookbook,
+                model: MyCookbook_Recipes,
                 include: {
                     model: Recipes,
-                    through: {
-                        attributes: ["liked"]
-                    }
                 }
             }
         ]

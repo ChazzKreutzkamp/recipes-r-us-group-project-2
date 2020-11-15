@@ -1,7 +1,7 @@
 // Note to self once the api's are tested to replace some of the params to session
 const router = require('express').Router();
 const sequelize = require('../../config/connection');
-const { Recipes } = require('../../models');
+const { Recipes, MyCookbook_Recipes } = require('../../models');
 const helpers = require('../../utils/helpers');
 
 // This is used for uploading images.
@@ -72,6 +72,35 @@ router.get('/:id', (req, res) => {
         where: {
             id: req.params.id
         }
+    })
+        .then(dbUserData => {
+            if (!dbUserData) {
+                res.status(404).json({ message: 'No recipe found with this id' });
+                return;
+            }
+            res.json(dbUserData);
+        })
+        .catch(err => {
+            console.log(err);
+            res.status(500).json(err);
+        });
+});
+
+router.get('liked/:id', (req, res) => {
+    Recipes.findAll({
+        where: {
+            user_id: req.session.user_id
+        },
+        include: [
+            {
+                model: Recipes,
+                through: MyCookbook_Recipes,
+                as: 'liked_recipes',
+                where: {
+                    user_id: req.session.user_id
+                }
+            }
+        ]
     })
         .then(dbUserData => {
             if (!dbUserData) {

@@ -1,8 +1,9 @@
 <div class="card">
-    <h5 class="card-header"><a href="/recipepage/{{id}}">{{title}}</a>{{#if featured}}Featured by Admin!!!{{/if}}</h5>
+    <h5 class="card-header"><a href="/recipepage/{{recipe.id}}">{{recipe.title}}</a>
+    </h5>
     <div class="card-body">
         <h5 class="card-title">Description:</h5>
-        <p class="card-text">{{description}}</p>
-        <button class="btn btn-warning rounded-0 unlike" id="{{id}}">unlike recipe</button>
+        <p class="card-text">{{recipe.description}}</p>
+        <button class="btn btn-outline-warning rounded-0 unlike" id="{{id}}">unlike recipe</button>
     </div>
 </div>
