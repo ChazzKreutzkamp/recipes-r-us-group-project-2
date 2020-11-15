@@ -7,17 +7,6 @@ const helpers = require('../../utils/helpers');
 // This is used for uploading images.
 const multer = require('multer')
 
-const storage = multer.diskStorage({
-    destination: function (req, file, cb) {
-        cb(null, 'uploads/');
-    },
-
-    // By default, multer removes file extensions so let's add them back
-    filename: function (req, file, cb) {
-        cb(null, file.fieldname + '-' + Date.now() + path.extname(file.originalname));
-    }
-});
-
 
 router.get('/', (req, res) => {
     Recipes.findAll({})
@@ -172,9 +161,20 @@ router.post('/', (req, res) => {
 
 // dev of image upload
 
+const storage = multer.diskStorage({
+    destination: function (req, file, cb) {
+        cb(null, 'public/assets/recipe_images');
+    },
+
+    // By default, multer removes file extensions so let's add them back
+    filename: function (req, file, cb) {
+        cb(null, file.originalname);
+    }
+});
+
 router.post('/uploadImage', (req, res) => {
     // 'profile_pic' is the name of our file input field in the HTML form
-    let upload = multer({ storage: storage, fileFilter: helpers.imageFilter }).single('profile_pic');
+    let upload = multer({ storage: storage, fileFilter: helpers.imageFilter }).single('recipe_pic');
 
     upload(req, res, function (err) {
         // req.file contains information of uploaded file
