@@ -6,11 +6,10 @@ This is a website where you can interact with a community of home chefs! Create 
 
 ## Important Links:
 
-Heroku Link: [whatuwannaeat.com](https://github.com/ChazzKreutzkamp)
+GitHub Repository Link: [GitHub](https://github.com/ChazzKreutzkamp/recipes-r-us-group-project-2)
 
-## Any Further Questions Feel Free to Contact Me:
+Heroku Link: [whatuwannaeat.com]()
 
-Email: chazz.kreutzkamp@gmail.com
 
 ## Image of the Application in Action:
 
