@@ -1,6 +1,6 @@
 // Note to self once the api's are tested to replace some of the params to session
 const router = require('express').Router();
-const { User, MyCookbook, Recipes, MyCookbook_Recipes } = require('../../models');
+const { User, Recipes, MyCookbook_Recipes } = require('../../models');
 
 router.get('/', (req, res) => {
     User.findAll({

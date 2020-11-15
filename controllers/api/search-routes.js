@@ -2,7 +2,7 @@
 const router = require('express').Router();
 const { Op } = require("sequelize");
 
-const { Recipes, Ingredients, Directions, MyCookbook, MyCookbook_Recipes, User } = require('../../models');
+const { Recipes, MyCookbook_Recipes, User } = require('../../models');
 
 
 // get routes
@@ -48,8 +48,6 @@ router.get('/', (req, res) => {
                 model: User,
                 attributes: ["id", "username"]
             },
-            { model: Ingredients },
-            { model: Directions }
         ]
     })
         .then(dbUserData => {
@@ -111,35 +109,5 @@ router.get('/users', (req, res) => {
             res.status(500).json(err);
         });
 });
-
-router.get('/ingredients', (req, res) => {
-    Ingredients.findAll({
-        where: {
-            name: req.body.name
-        },
-        include: [
-            {
-                model: Recipes,
-                include: {
-                    model: User,
-                    attributes: ['username']
-                }
-            }
-        ]
-    })
-        .then(dbUserData => {
-            if (!dbUserData) {
-                res.status(404).json({ message: 'No result found.' });
-                return;
-            }
-            res.json(dbUserData);
-        })
-        .catch(err => {
-            console.log(err);
-            res.status(500).json(err);
-        });
-});
-
-
 
 module.exports = router;

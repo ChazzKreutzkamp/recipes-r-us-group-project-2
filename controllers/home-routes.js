@@ -1,6 +1,6 @@
 const router = require('express').Router();
 const sequelize = require('../config/connection');
-const { User, Ingredients, MyCookbook, MyCookbook_Recipes, Recipes, Directions } = require('../models');
+const { User, MyCookbook_Recipes, Recipes } = require('../models');
 const { use } = require('./api');
 const { Op } = require("sequelize");
 
@@ -218,15 +218,7 @@ router.get('/edit-recipe/:id', (req, res) => {
     Recipes.findOne({
         where: {
             id: req.params.id
-        },
-        include: [
-            {
-                model: Ingredients
-            },
-            {
-                model: Directions
-            }
-        ]
+        }
     })
         .then(dbPostData => {
             if (!dbPostData) {
