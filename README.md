@@ -6,7 +6,7 @@ This is a website where you can interact with a community of home chefs! Create 
 
 ## Important Links:
 
-Heroku Link: [ChazzKreutzkamp](https://github.com/ChazzKreutzkamp)
+Heroku Link: [whatuwanneat.com](https://github.com/ChazzKreutzkamp)
 
 ## Any Further Questions Feel Free to Contact Me:
 
