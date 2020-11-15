@@ -214,6 +214,7 @@ router.get('/recipepage/:id', (req, res) => {
                 recipe,
                 loggedIn: req.session.loggedIn,
                 user_email: req.session.user_email,
+                user_id: req.session.user_id,
                 isAdmin: req.session.isAdmin
             });
         })

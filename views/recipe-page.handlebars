@@ -1,6 +1,6 @@
 <div class="container">
     <div class="row">
-        <div class="col-md-12  text-center rounded-0" id="homepage-title">WhAt yA WaNna eAt? 
+        <div class="col-md-12  text-center rounded-0" id="homepage-title">WhAt yA WaNna eAt?
         </div>
     </div>
     <div class="homepage-body">
@@ -20,7 +20,7 @@
                 <h6>{{recipe.direction_list}}</h6>
                 {{#if loggedIn}}
                 <button class="btn btn-warning rounded-0" id="email">Email Ingredients</button>
-                <button class="btn btn-warning rounded-0">Press here to like the recipe</button>
+                <button class="btn btn-warning rounded-0" id="like">Press here to like the recipe</button>
                 {{/if}}
                 {{#if isAdmin}}
                 <button class="btn btn-warning rounded-0" id="feature">Feature this recipe?</button>
@@ -30,8 +30,12 @@
     </div>
 </div>
 <p class="invisible" id="useremail">{{user_email}}</p>
+<p class="invisible" id="userid">{{user_id}}</p>
 <p class="invisible" id="recipeid">{{recipe.id}}</p>
 <script src="https://code.jquery.com/jquery-3.4.1.min.js"></script>
+{{#if isAdmin}}
 <script src="/javascript/featured.js"></script>
+{{/if}}
 <script src="https://smtpjs.com/v3/smtp.js"></script>
 <script src="/javascript/email.js"></script>
+<script src="/javascript/like-recipe.js"></script>

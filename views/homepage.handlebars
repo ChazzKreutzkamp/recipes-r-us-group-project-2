@@ -36,7 +36,7 @@
             </div>
             <div id="current-recipe" class="liked-food col-md-6 border border-warning rounded-0 text-center pt-4">
                 <h2>Liked Recipes</h2>
-                <div class="somethingunique">
+                <div class="btnhelper">
                     {{#if user.mycookbook_recipes.length}}
                     {{#each user.mycookbook_recipes as |recipe|}}
                     {{> liked-card recipe}}
@@ -51,3 +51,4 @@
     </div>
 </div>
 <script src="/javascript/delete-recipe.js"></script>
+<script src="/javascript/unlike-recipe.js"></script>
