@@ -104,7 +104,10 @@ a {
   
   
 }
-
+#search-title{
+  padding: 20px;
+  color: var(--text-2-color);
+}
 /* recipe input page */
 #current-recipe {
   color: black;
