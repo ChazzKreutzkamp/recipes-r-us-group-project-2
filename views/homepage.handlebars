@@ -4,34 +4,51 @@
         </div>
     </div>
     <div class="row">
-        <div class="col-md-12  text-center rounded-0"><button class="btn btn-warning rounded-0"><a href="/newrecipe">Add
+        <div class="col-md-12  text-center rounded-0"><button class="btn btn-outline-warning rounded-0"><a
+                    href="/newrecipe">Add
                     a recipe</a></button>
         </div>
+        <h6 class="invisible">space</h6>
+        {{#if isAdmin}}
+        <div class="col-md-12  text-center rounded-0"><button class="btn btn-outline-warning rounded-0"><a
+                    href="/modfeatured">Mod Featured Recipes?</a></button>
+        </div>
+        {{/if}}
     </div>
     <div class="homepage-body">
         <div class="row">
             <div id="current-recipe" class=" col-md-6 border border-warning rounded-0 text-center pt-4">
 
-                <h2>Your Recipes</h2>
+                <h2>Your Recipes:</h2>
                 <div class="somethingunique">
-                    {{#if recipe.length}}
-                    {{#each recipe as |recipe|}}
+                    {{#if user.recipes.length}}
+                    {{#each user.recipes as |recipe|}}
                     {{> recipe-card recipe}}
                     {{/each}}
                     {{/if}}
-                    {{#else}}
+                    {{#unless user.recipes.length}}
                     <h3>You haven't added any recipes yet</h3>
-                    {{/else}}
+                    {{/unless}}
                 </div>
 
                 <h2 class="invisible">heheheyoufoundme</h2>
 
             </div>
-            <div class="liked-food col-md-6 border border-warning rounded-0 text-center pt-4">
+            <div id="current-recipe" class="liked-food col-md-6 border border-warning rounded-0 text-center pt-4">
                 <h2>Liked Recipes</h2>
-                <h3>Coming Soon...</h3>
+                <div class="btnhelper">
+                    {{#if user.mycookbook_recipes.length}}
+                    {{#each user.mycookbook_recipes as |recipe|}}
+                    {{> liked-card recipe}}
+                    {{/each}}
+                    {{/if}}
+                    {{#unless user.mycookbook_recipes.length}}
+                    <h3>You haven't liked any recipes yet</h3>
+                    {{/unless}}
+                </div>
             </div>
         </div>
     </div>
 </div>
 <script src="/javascript/delete-recipe.js"></script>
+<script src="/javascript/unlike-recipe.js"></script>

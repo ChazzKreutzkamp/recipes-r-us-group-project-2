@@ -9,7 +9,7 @@ async function postRecipeHandler(event) {
     const cook_time = parseInt(document.querySelector('#input_cook_time').value);
     const cuisine = document.querySelector('#input_cuisine').value;
     const description = document.querySelector('#input_description').value;
-    const image_filename = document.querySelector('#input_img').value;
+    // const image_filename = document.querySelector('#input_img').value;
 
 
     //for demo
@@ -29,7 +29,7 @@ async function postRecipeHandler(event) {
             cook_time,
             description,
             cuisine,
-            image_filename,
+            // image_filename,
             direction_list,
             ingredient_list
             // user_id handled by api

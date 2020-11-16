@@ -1,5 +1,4 @@
 async function deleteRecipeHandler(event) {
-    console.log(event.target.classList);
     if (event.target.classList.contains('delete')) {
 
         const id = event.target.id;
