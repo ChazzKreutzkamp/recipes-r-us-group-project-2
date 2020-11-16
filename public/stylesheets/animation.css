@@ -6,11 +6,21 @@
 
 body {
   text-align: center;
-  /* margin-top: 180px; */
-  
 }
 
-
+.bbq-guy{
+  text-align: center;
+}
+#smoke {
+  animation: cubic-bezier(0.075, 0.82, 0.165, 1);
+}
+@keyframes smoke-move {
+  from{
+    transform: translateX(0);
+  } to {
+    transform: translateX(20px);
+  }
+}
 
 #ball {
   animation: bounce 0.5s;
@@ -38,16 +48,4 @@ body {
 .prop:hover{
   transform: rotate(1000deg);
 }
-/* #ball {
-  animation: propel 3s infinite linear;
-  transform-origin: center;
-}
 
-@keyframes propel {
-  0% {
-    transform: translate(-60px, -40px);
-  }
-  100% {
-    transform: translate(10px, 0);
-  }
-} */
