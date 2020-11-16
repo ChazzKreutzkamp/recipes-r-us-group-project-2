@@ -8,7 +8,7 @@ This is a website where you can interact with a community of home chefs! Create 
 
 GitHub Repository Link: [GitHub](https://github.com/ChazzKreutzkamp/recipes-r-us-group-project-2)
 
-Heroku Link: [whatuwannaeat.com]()
+Heroku Link: [whatuwannaeat.com](https://secret-fortress-68356.herokuapp.com/)
 
 
 ## Image of the Application in Action:
