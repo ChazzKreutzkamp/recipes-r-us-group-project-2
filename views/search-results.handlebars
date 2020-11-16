@@ -1,0 +1,21 @@
+<div class="container">
+    <div class="row">
+        <div id="search-title" class="col-md-12 text-center">
+            <h1>Your search results:</h1>
+        </div>
+    </div>
+    <div class="search-result-body">
+        <div class="row">
+            <div class="col-md-12 text-center pt-10">
+                {{#if recipe.length}}
+                {{#each recipe as |recipe|}}
+                {{> search-results recipe}}
+                {{/each}}
+                {{/if}}
+                {{#unless recipe.length}}
+                <h2>There are no search results, try searching for something else</h2>
+                {{/unless}}
+            </div>
+        </div>
+    </div>
+</div>
