@@ -41,4 +41,4 @@ Heroku Link: [whatuwannaeat.com](https://secret-fortress-68356.herokuapp.com/)
 
 ## Image of the Application in Action:
 
-![al text]()
+![al text](https://github.com/ChazzKreutzkamp/recipes-r-us-group-project-2/blob/main/readme-assets/landingpage.jpeg)
