@@ -28,7 +28,7 @@
 
   gitHub: ChazzKreutzkamp,
 
-  [Jeremy's Webpage](https://cornwalljeremy.github.io/cornwall-portfolio),
+  
 
    
 
@@ -41,4 +41,4 @@ Heroku Link: [whatuwannaeat.com](https://secret-fortress-68356.herokuapp.com/)
 
 ## Image of the Application in Action:
 
-![al text](https://github.com/ChazzKreutzkamp/recipes-r-us-group-project-2/blob/read-me/readme-assets/landingpage.JPG)
+![al text]()
