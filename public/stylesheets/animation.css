@@ -1,0 +1,51 @@
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+body {
+  text-align: center;
+  /* margin-top: 180px; */
+  
+}
+
+
+
+#ball {
+  animation: bounce 0.5s;
+  animation-direction: alternate;
+  animation-timing-function: cubic-bezier(.5,0.05,1,.5);
+  animation-iteration-count: infinite;
+
+}
+
+@keyframes bounce {
+  from {
+    transform: translate3d(0,0,0);
+  } to {
+    transform: translate3d(0,200,0);
+  }
+ 
+}
+
+
+.prop {
+  transition: transform 1s ease-in-out;
+}
+.prop:hover{
+  transform: rotate(1000deg);
+}
+/* #ball {
+  animation: propel 3s infinite linear;
+  transform-origin: center;
+}
+
+@keyframes propel {
+  0% {
+    transform: translate(-60px, -40px);
+  }
+  100% {
+    transform: translate(10px, 0);
+  }
+} */
