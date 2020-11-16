@@ -8,7 +8,7 @@
             <div id="current-recipe" class=" col-md-12 border border-warning rounded-0 text-center">
                 {{#each recipe as |recipe|}}
                 <h3>{{recipe.title}}</h3>
-                <img src="{{image_route}}" class="food-img" alt="">
+                <img src="/assets/recipe_images/{{recipe.image_filename}}" class="food-img" alt="">
                 <h5 class="recipe-description">Description</h5>
                 <h6>{{recipe.description}}</h6>
                 <h5>Cook time</h5>
